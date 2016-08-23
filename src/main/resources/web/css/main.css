@@ -1,0 +1,305 @@
+body {
+    color: #666666;
+}
+
+body > div.page-header {
+    margin: 0 0 20px 0;
+    padding: 5px 5%;
+    background: linear-gradient(to bottom, #00AEEF 0%, rgba(0, 145, 199, 1) 50%, #00AEEF 100%);
+    width: 100%;
+    font-size: 18px;
+}
+
+/************************
+***     CUSTOM NAVS
+************************/
+
+div.nav-block {
+    display: inline-flex;
+    vertical-align: middle;
+    margin-bottom: 0;
+    margin-top: 0;
+    border: none;
+}
+
+div.nav-block > div.nav-item {
+    font-size: 14px;
+    border-right: 1px solid white;
+    cursor: pointer;
+}
+
+div.nav-block > div.nav-item:last-child {
+    border-right: 0;
+}
+
+div.nav-block > div.nav-item > span,
+div.nav-block > div.nav-item > a {
+    display: block;
+    padding: 5px 10px;
+    color: white;
+    text-decoration: none;
+    margin: 0 5px;
+    border-radius: 3px;
+}
+
+div.nav-block > div.nav-item > span:hover,
+div.nav-block > div.nav-item > a:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+div.nav-block > div.nav-item > span:hover.active,
+div.nav-block > div.nav-item > span.active,
+div.nav-block > div.nav-item > a:hover.active,
+div.nav-block > div.nav-item > a.active {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+div.section-header > div.nav-block:nth-child(2),
+div.page-header > div.nav-block:nth-child(2) {
+    float: right;
+}
+
+div.page-header div.nav-item {
+    font-size: 18px;
+}
+
+div.page-header div.nav-item > span,
+div.page-header div.nav-item > a {
+    padding: 7px 12px;
+}
+
+/************************/
+
+/************************
+***     SECTIONS
+************************/
+
+div.section {
+    border: #DDD solid 1px;
+    border-radius: 3px;
+    margin: 10px 5px;
+}
+
+div.section > div.section-header {
+    padding: 3px 10px;
+    font-size: 16px;
+    color: inherit;
+    border: 0;
+    background: linear-gradient(to bottom, rgba(211, 211, 211, 0.45) 0%, rgba(211, 211, 211, 1) 50%, rgba(211, 211, 211, 0.45) 100%);
+    width: 100%;
+}
+
+div.section > div.section-body {
+    margin: 6px 12px;
+}
+
+div.section.page-content {
+    margin: 0 5%;
+    border: #00AEEF solid 1px;
+}
+
+div.section.page-content > div.section-header {
+    background: linear-gradient(to bottom, #00AEEF 0%, rgba(0, 145, 199, 1) 50%, #00AEEF 100%);
+    color: white;
+}
+
+/************************/
+
+/************************
+***     FORM
+************************/
+
+form {
+    margin: 0;
+}
+
+form span,
+form label,
+form input[type='checkbox'],
+form input,
+form input.form-control,
+form select.form-control,
+form textarea.form-control {
+    font-size: 13px;
+    margin: 0 5px 0 0;
+    vertical-align: middle;
+}
+
+form span {
+    vertical-align: middle;
+}
+
+form div.form-block {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+form div.form-block > .form-group {
+    display: inline-block;
+}
+
+label {
+    cursor: pointer;
+}
+
+form.user-form label {
+    width: 12em;
+}
+
+select {
+    background-color: white;
+}
+
+select:focus {
+    outline: none;
+}
+
+label.ng-invalid,
+.glyphicon.ng-invalid,
+form.enable-validation input.ng-dirty.ng-invalid:-webkit-autofill,
+form.enable-validation select.ng-dirty.ng-invalid:-webkit-autofill,
+form.enable-validation textarea.ng-dirty.ng-invalid:-webkit-autofill,
+form.enable-validation input.ng-dirty.ng-invalid,
+form.enable-validation select.ng-dirty.ng-invalid,
+form.enable-validation textarea.ng-dirty.ng-invalid {
+    color: #E00000;
+    -webkit-text-fill-color: #E00000;
+    transition: 200ms ease-out;
+}
+
+label.ng-valid,
+form.enable-validation input.ng-dirty.ng-nvalid:-webkit-autofill,
+form.enable-validation select.ng-dirty.ng-nvalid:-webkit-autofill,
+form.enable-validation textarea.ng-dirty.ng-nvalid:-webkit-autofill,
+form.enable-validation input.ng-dirty.ng-valid,
+form.enable-validation select.ng-dirty.ng-valid,
+form.enable-validation textarea.ng-dirty.ng-valid {
+    color: green;
+    -webkit-text-fill-color: green;
+    transition: 200ms ease-out;
+}
+
+/************************/
+
+/************************
+***     TABLES
+************************/
+
+table tr > td {
+    vertical-align: middle;
+}
+
+table.table-clickable > tbody > tr {
+    cursor: pointer;
+}
+
+table caption {
+    color: inherit;
+    font-size: 16px;
+}
+
+/************************/
+
+/************************
+***     PAGINATION
+************************/
+
+div.table-paginator > div {
+    padding: 10px 0;
+}
+
+div.table-paginator > div {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+}
+
+div.table-paginator > div .pagination {
+    margin: 0;
+}
+
+/************************/
+
+/************************
+***     DATEPICKER
+************************/
+
+ul.uib-datepicker-popup span {
+    font-size: 10px;
+    margin: 0;
+}
+
+ul.uib-datepicker-popup button.uib-left,
+ul.uib-datepicker-popup button.uib-right {
+    padding: 8px 10px;
+}
+
+/************************/
+
+span {
+    vertical-align: middle;
+}
+
+div.nav-item > a,
+li > a,
+button {
+    transition: background 150ms linear, opacity 150ms linear;
+}
+
+div.cell {
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: top;
+}
+
+.centered {
+    text-align: center;
+}
+
+.v-state-success {
+    animation: v-state-success 2s;
+}
+
+.v-state-fail {
+    animation: v-state-fail 2s;
+}
+
+.v-state-in-progress {
+    animation: v-state-in-progress 1.2s infinite;
+}
+
+@keyframes v-state-in-success {
+    0% {
+        box-shadow: 0 0 15px 0 greenyellow;
+    }
+    100% {
+        box-shadow: none;
+    }
+}
+
+@keyframes v-state-fail {
+    0% {
+        box-shadow: 0 0 15px 0 darkred;
+    }
+    100% {
+        box-shadow: none;
+    }
+}
+
+@keyframes v-state-in-progress {
+    0%, 100% {
+        box-shadow: none;
+    }
+    50% {
+        box-shadow: 0 0 15px 0 deepskyblue;
+    }
+}
+
+@keyframes v-state-in-progress {
+    0%, 100% {
+        box-shadow: none;
+    }
+    50% {
+        box-shadow: 0 0 15px 0 deepskyblue;
+    }
+}

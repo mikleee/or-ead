@@ -1,0 +1,9 @@
+.configuration table tr > td:nth-child(1),
+.configuration table tr > th:nth-child(1) {
+    width: 20%;
+}
+
+.configuration table tr > td:nth-child(2),
+.configuration table tr > th:nth-child(2) {
+    width: 79%;
+}

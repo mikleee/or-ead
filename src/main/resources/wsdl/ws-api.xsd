@@ -1,0 +1,567 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:ns="http://virtual1.co.uk/model/xml"
+           targetNamespace="http://virtual1.co.uk/model/xml"
+           elementFormDefault="qualified">
+
+    <xs:complexType name="baseRequest" abstract="true">
+        <xs:sequence>
+            <xs:element name="apiKey" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="baseResponse" abstract="true">
+        <xs:sequence>
+            <xs:element name="status" type="ns:status"/>
+            <xs:element name="message" type="xs:string"/>
+            <xs:element name="errors" type="ns:error" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="error">
+        <xs:sequence>
+            <xs:element name="code" type="xs:string"/>
+            <xs:element name="message" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <!-- appointments -->
+
+    <!-- requests -->
+    <xs:complexType name="baseAppointmentRequest" abstract="true">
+        <xs:complexContent>
+            <xs:extension base="ns:baseRequest">
+                <xs:sequence>
+                    <xs:element name="appointment" type="ns:appointment"/>
+                    <xs:element name="address" type="ns:addressDetails" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="availableAppointmentsRequest">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="ns:baseAppointmentRequest"/>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="registerAppointmentRequest">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="ns:baseAppointmentRequest"/>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="appointmentDetailsRequest">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="ns:baseAppointmentRequest"/>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <!-- responses -->
+    <xs:complexType name="baseAppointmentResponse">
+        <xs:complexContent>
+            <xs:extension base="ns:baseResponse">
+                <xs:sequence>
+                    <xs:element name="appointment" type="ns:appointment"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="registerAppointmentResponse">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="ns:baseAppointmentResponse"/>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="availableAppointmentsResponse">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="ns:baseAppointmentResponse">
+                    <xs:sequence>
+                        <xs:element name="availableAppointments" type="ns:appointmentSlot" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="appointmentDetailsResponse">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="ns:baseAppointmentResponse"/>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- provision -->
+
+    <!-- requests -->
+    <xs:element name="provisionRequest">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="ns:baseRequest">
+                    <xs:sequence>
+                        <xs:element name="provisionDetails" type="ns:provisionDetails"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="provisioningDetailsRequest">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="ns:baseRequest">
+                    <xs:sequence>
+                        <xs:element name="commandId" type="xs:int"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="provisionDetails" abstract="true">
+        <xs:sequence>
+            <xs:element name="case" type="ns:case" minOccurs="0"/>
+            <xs:element name="access" type="ns:access" minOccurs="0"/>
+            <xs:element name="addressDetails" type="ns:addressDetails" minOccurs="0"/>
+            <xs:element name="siteDetails" type="ns:siteDetails" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="productProvisionDetails" abstract="true">
+        <xs:complexContent>
+            <xs:extension base="ns:provisionDetails">
+                <xs:sequence>
+                    <xs:element name="adslProductCode" type="xs:string"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="provideNewDetails">
+        <xs:complexContent>
+            <xs:extension base="ns:productProvisionDetails">
+                <xs:sequence>
+                    <xs:element name="appointment" type="ns:appointment"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="provideDetails">
+        <xs:complexContent>
+            <xs:extension base="ns:productProvisionDetails">
+                <xs:sequence>
+                    <xs:element name="customerRequiredDate" type="xs:dateTime"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="mpfMigrateDetails">
+        <xs:complexContent>
+            <xs:extension base="ns:productProvisionDetails">
+                <xs:sequence>
+                    <xs:element name="appointment" type="ns:appointment"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="smpfMigrateDetails">
+        <xs:complexContent>
+            <xs:extension base="ns:productProvisionDetails">
+                <xs:sequence>
+                    <xs:element name="customerRequiredDate" type="xs:dateTime"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="linkedCommandDetails">
+        <xs:complexContent>
+            <xs:extension base="ns:provisionDetails">
+                <xs:sequence>
+                    <xs:element name="targetCommandId" type="xs:int" minOccurs="1"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="amendDetails">
+        <xs:complexContent>
+            <xs:extension base="ns:linkedCommandDetails">
+                <xs:sequence>
+                    <xs:element name="appointment" type="ns:appointment" minOccurs="0"/>
+                    <xs:element name="customerRequiredDate" type="xs:dateTime" minOccurs="1"/>
+                    <xs:element name="amendmentReason" type="xs:string" minOccurs="1"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <!-- responses -->
+    <xs:element name="provisionResponse">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="ns:baseResponse">
+                    <xs:sequence>
+                        <xs:element name="commandId" type="xs:int" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="provisioningDetailsResponse">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="ns:baseResponse">
+                    <xs:sequence>
+                        <xs:element name="provisionState" type="ns:provisionState"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="provisionState">
+        <xs:complexContent>
+            <xs:extension base="ns:baseResponse">
+                <xs:sequence>
+                    <xs:element name="state" type="xs:string"/>
+                    <xs:element name="errorCode" type="xs:string" minOccurs="0"/>
+                    <xs:element name="errorDescription" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <!-- supportal -->
+    <xs:element name="lornRequest">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="ns:baseRequest">
+                    <xs:sequence>
+                        <xs:element name="lornIdentifier" type="xs:string"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="lornResponse">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="ns:baseResponse">
+                    <xs:sequence>
+                        <xs:element name="lornIdentifier" type="xs:string"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- addresses -->
+    <xs:complexType name="baseAddressRequest">
+        <xs:complexContent>
+            <xs:extension base="ns:baseRequest">
+                <xs:sequence>
+                    <xs:element name="addressDetails" type="ns:addressDetails"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="availableAddressesRequest">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="ns:baseAddressRequest"/>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="addressKeyRequest">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="ns:baseAddressRequest"/>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="addressDetailsRequest">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="ns:baseAddressRequest"/>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <!-- responses -->
+    <xs:complexType name="baseAddressResponse">
+        <xs:complexContent>
+            <xs:extension base="ns:baseResponse">
+                <xs:sequence>
+                    <xs:element name="addressDetails" type="ns:addressDetails"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="availableAddressesResponse">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="ns:baseResponse">
+                    <xs:sequence>
+                        <xs:element name="availableAddresses" type="ns:addressDetails" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="addressKeyResponse">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="ns:baseAddressResponse"/>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="addressDetailsResponse">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="ns:baseAddressResponse"/>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+
+    <!-- line diagnostic -->
+    <!-- requests -->
+    <xs:complexType name="lineDiagnosticRequest" abstract="true">
+        <xs:complexContent>
+            <xs:extension base="ns:baseRequest">
+                <xs:sequence>
+                    <xs:element name="cli" type="ns:phoneNumber"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="lineSyncStatusRequest">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="ns:lineDiagnosticRequest"/>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="lineAuthLogRequest">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="ns:lineDiagnosticRequest">
+                    <xs:sequence>
+                        <xs:element name="searchCriteria" type="xs:string"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="lineTamTestRequest">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="ns:lineDiagnosticRequest"/>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="lineLatestTamTestRequest">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="ns:lineDiagnosticRequest"/>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <!-- responses -->
+    <xs:element name="lineSyncStatusResponse">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="ns:baseResponse">
+                    <xs:sequence>
+                        <xs:element name="maxDownstreamRate" type="xs:int"/>
+                        <xs:element name="attenuation" type="xs:float"/>
+                        <xs:element name="downstreamSNR" type="xs:float"/>
+                        <xs:element name="downstreamRate" type="xs:int"/>
+                        <xs:element name="maxUpstreamRate" type="xs:int"/>
+                        <xs:element name="upstreamRate" type="xs:int"/>
+                        <xs:element name="operStatus" type="xs:string"/>
+                        <xs:element name="timeInSync" type="xs:string"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="lineAuthLogResponse">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="ns:baseResponse">
+                    <xs:sequence>
+                        <xs:element name="authLogs" type="ns:authLog" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="authLog">
+        <xs:sequence>
+            <xs:element name="radiusName" type="xs:string"/>
+            <xs:element name="date" type="xs:string"/>
+            <xs:element name="status" type="xs:string"/>
+            <xs:element name="username" type="xs:string"/>
+            <xs:element name="nasPortID" type="xs:string"/>
+            <xs:element name="bras" type="xs:string"/>
+            <xs:element name="presentedNetworkID" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="baseLineTamTestResponse" abstract="true">
+        <xs:complexContent>
+            <xs:extension base="ns:baseResponse">
+                <xs:sequence>
+                    <xs:element name="tamTestKey" type="xs:string"/>
+                    <xs:element name="dateTestRequested" type="xs:dateTime"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="lineTamTestResponse">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="ns:baseLineTamTestResponse"/>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="lineLatestTamTestResponse">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="ns:baseLineTamTestResponse">
+                    <xs:sequence>
+                        <xs:element name="dateTestCompleted" type="xs:dateTime"/>
+                        <xs:element name="testOutcome" type="xs:string"/>
+                        <xs:element name="faultLocation" type="xs:string"/>
+                        <xs:element name="faultDescription" type="xs:string"/>
+                        <xs:element name="openreachReference" type="xs:string"/>
+                        <xs:element name="diagnosisCode" type="xs:string"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- non provisioning -->
+    <xs:element name="pingRequest">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="ns:baseRequest"/>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="pingResponse">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="ns:baseResponse"/>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- objects  -->
+
+    <xs:complexType name="case">
+        <xs:sequence>
+            <xs:element name="id" type="xs:string"/>
+            <xs:element name="number" type="xs:string"/>
+            <xs:element name="endCustomerName" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="access">
+        <xs:sequence>
+            <xs:element name="id" type="xs:string" minOccurs="0"/> <!-- reseller reference -->
+            <xs:element name="number" type="xs:string"/>
+            <xs:element name="ridNumber" type="xs:string" minOccurs="0"/> <!-- RID_Number__c -->
+            <xs:element name="cli" type="ns:phoneNumber" minOccurs="0"/> <!-- ADSL_Telephone__c --> <!--SMPF Provisioning Identifier required for SMPF-->
+            <xs:element name="careLevel" type="xs:string"/> <!-- Care_Level__c -->
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="siteDetails">
+        <xs:sequence>
+            <xs:element name="siteContactName" type="xs:string"/> <!-- Case.Site_Contact_B_End__c -->
+            <xs:element name="siteNotes" type="xs:string" minOccurs="0"/> <!-- Case.Site_Notes_B_End__c -->
+            <xs:element name="siteContactPhone" type="xs:string"/> <!-- Case.Phone_B_End__c -->
+            <xs:element name="siteAccessAvailableDate" type="xs:dateTime"/> <!-- Case.Site_Access_Available_Date_B_End__c -->
+            <xs:element name="siteConstraints" type="xs:string"/> <!-- Case.Site_Constraints_B_End__c -->
+            <xs:element name="siteStatus" type="xs:string"/> <!-- Case.Site_Status_B_End__c -->
+
+            <xs:element name="title" type="xs:string"/> <!--todo-->
+            <xs:element name="initialsForeNames" type="xs:string"/> <!--todo-->
+            <xs:element name="nameHeader" type="xs:string"/> <!-- todo -->
+            <xs:element name="businessSuffix" type="xs:string" minOccurs="0"/> <!-- todo -->
+            <xs:element name="phone" type="xs:string"/>
+
+            <xs:element name="floor" type="xs:string" minOccurs="0"/> <!-- Case.Floor_Status_B_End__c -->
+            <xs:element name="room" type="xs:string" minOccurs="0"/> <!-- Case.Room_Status_B_End__c -->
+            <xs:element name="rack" type="xs:string" minOccurs="0"/> <!-- Case.Rack_Status_B_End__c -->
+            <xs:element name="buildingConstructedBeforeYear2000" type="xs:string" minOccurs="0"/>
+            <xs:element name="asbestosRegisterAvailableOnSite" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="addressDetails">
+        <xs:sequence>
+            <xs:element name="organisationName" type="xs:string" minOccurs="0"/>
+            <xs:element name="subBuilding" type="xs:string" minOccurs="0"/>
+            <xs:element name="buildingName" type="xs:string" minOccurs="0"/>
+            <xs:element name="buildingNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="dependantThoroughfare" type="xs:string" minOccurs="0"/>
+            <xs:element name="street" type="xs:string" minOccurs="0"/>
+            <xs:element name="locality" type="xs:string" minOccurs="0"/>
+            <xs:element name="town" type="xs:string" minOccurs="0"/>
+            <xs:element name="county" type="xs:string" minOccurs="0"/>
+            <xs:element name="postCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="addressReference" type="xs:string" minOccurs="0"/>
+            <xs:element name="cssDistrictCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="exchangeCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="qualifier" type="ns:addressQualifier" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="appointment">
+        <xs:sequence>
+            <xs:element name="appointmentId" type="xs:string" minOccurs="0"/>
+            <xs:element name="startAppointmentDate" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="serviceType" type="xs:string" minOccurs="0"/>
+            <xs:element name="appointmentType" type="xs:string" minOccurs="0"/>
+            <xs:element name="appointmentSlot" type="ns:appointmentSlot" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="appointmentSlot">
+        <xs:sequence>
+            <xs:element name="date" type="xs:dateTime"/>
+            <xs:element name="timeSlot" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- enums -->
+
+    <xs:simpleType name="status">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="SUCCESS"/>
+            <xs:enumeration value="ERROR"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="addressQualifier">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Gold"/>
+            <xs:enumeration value="Silver"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="commandType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Provide Command"/>
+            <xs:enumeration value="Provide New Command"/>
+            <xs:enumeration value="Migrate Mpf Command"/>
+            <xs:enumeration value="Migrate Smpf Command"/>
+            <xs:enumeration value="Amend Command"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <!-- simple type -->
+    <xs:simpleType name="phoneNumber">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="^0[0-9\s]{9,13}$"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+</xs:schema>

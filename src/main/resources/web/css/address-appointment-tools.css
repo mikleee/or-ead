@@ -1,0 +1,26 @@
+.address-tools,
+.appointment-tools {
+    display: inline-block;
+    width: 48%;
+    vertical-align: top;
+}
+
+.address-tools .addresses {
+    margin: 8px 0;
+}
+
+.address-tools .addresses .address {
+    text-align: justify;
+}
+
+.address-tools .addresses .address .address-identifier {
+
+}
+
+.address-tools .addresses .address .address-details {
+    font-style: italic;
+}
+
+form.appointment-form label {
+    min-width: 10em;
+}

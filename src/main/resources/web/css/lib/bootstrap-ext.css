@@ -1,0 +1,115 @@
+input.form-control {
+
+}
+
+legend .nav,
+legend .btn-group {
+    margin: 0;
+}
+
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:focus,
+.nav-pills > li.active > a:hover {
+    background-color: #00AEEF;
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn.active.focus {
+    outline: none;
+}
+
+table.table.table-condensed {
+    font-size: 12px;
+}
+
+table.table > tbody > tr > td,
+table.table > tfoot > tr > td,
+table.table > thead > tr > th {
+    vertical-align: middle;
+}
+
+table.table.table-condensed > tbody > tr > td > div.btn-group {
+    margin-bottom: 0;
+}
+
+form select.form-control,
+form .form-inline select.form-control,
+form input.form-control,
+form .form-inline input.form-control {
+    width: 200px;
+}
+
+.form-control {
+    height: auto;
+    padding: 4px 10px;
+}
+
+.form-group {
+    margin: 0;
+    padding: 2px 0;
+}
+
+.alert.alert-xs {
+    padding: 6px 14px;
+}
+
+.dropdown-menu {
+    min-width: 0;
+}
+
+.modal-open .modal {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.modal-backdrop {
+    background-color: grey;
+}
+
+.modal-dialog {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+}
+
+.modal-content {
+    display: inline-block;
+    vertical-align: middle;
+    width: auto;
+    min-width: 400px;
+    text-align: left;
+}
+
+.modal-dialog:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -0.25em; /* Adjusts for spacing */
+}
+
+.popover {
+    font-size: 12px;
+    min-width: 12em;
+    text-align: left;
+    width: auto;
+}
+
+.alert {
+    margin: 5px 0;
+    text-align: center;
+}
+
+.glyphicon {
+    top: 0;
+    line-height: inherit;
+}
+
+.bagde {
+    background-color: #666666;
+}

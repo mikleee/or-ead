@@ -1,0 +1,31 @@
+fm-error-tooltip {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+span.sorter {
+    cursor: pointer;
+    transition: color 500ms ease-out;
+    padding: 0 0.5em;
+}
+
+span.sorter:hover,
+span.sorter.active-sorter {
+    color: #00aeee;
+}
+
+paginator > div.paginator > div {
+    padding: 10px 0;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0.5em 0 0;
+}
+
+paginator > div.paginator > .pagination {
+    margin: 0;
+}
+
+spinner img {
+    max-height: 1.6em;
+    margin: 0;
+}
