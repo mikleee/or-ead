@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class SfIpJust extends BaseSalesforceObject  {
+public class SfIpJust extends BaseSalesforceObject {
     private static final long serialVersionUID = 1L;
 
     private Long solutionId;
@@ -226,8 +226,10 @@ public class SfIpJust extends BaseSalesforceObject  {
         if (!super.equals(o)) return false;
 
         SfIpJust sfIpJust = (SfIpJust) o;
-        if (getLastModifiedDate() != null ? !getLastModifiedDate().equals(sfIpJust.getLastModifiedDate()) : sfIpJust.getLastModifiedDate() != null) return false;
-        if (getNetworkDiagram() != null ? !getNetworkDiagram().equals(sfIpJust.getNetworkDiagram()) : sfIpJust.getNetworkDiagram() != null) return false;
+        if (getLastModifiedDate() != null ? !getLastModifiedDate().equals(sfIpJust.getLastModifiedDate()) : sfIpJust.getLastModifiedDate() != null)
+            return false;
+        if (getNetworkDiagram() != null ? !getNetworkDiagram().equals(sfIpJust.getNetworkDiagram()) : sfIpJust.getNetworkDiagram() != null)
+            return false;
         return true;
     }
 

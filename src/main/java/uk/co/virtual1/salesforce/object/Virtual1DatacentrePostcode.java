@@ -4,7 +4,7 @@ package uk.co.virtual1.salesforce.object;
  * @author Andrei Kilin created on 11.07.16.
  */
 
-public class Virtual1DatacentrePostcode extends BaseSalesforceObject{
+public class Virtual1DatacentrePostcode extends BaseSalesforceObject {
 
     private static final long serialVersionUID = 1L;
     public static final String RECORD_TYPE_VPN = "Datacentre Postcode";

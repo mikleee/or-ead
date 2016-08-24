@@ -1,10 +1,6 @@
 package uk.co.virtual1.model.xml.out;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +15,9 @@ public class PurchaseOrder {
     private OrderHeader orderHeader = new OrderHeader();
     @XmlElement(name = "ListOfOrderDetail")
     private List<OrderDetail> listOfOrderDetail = new ArrayList<>();
+    @XmlElement(name = "OrderSummary")
+    private OrderSummary orderSummary = new OrderSummary();
+
 
     public OrderHeader getOrderHeader() {
         return orderHeader;
@@ -34,5 +33,13 @@ public class PurchaseOrder {
 
     public void setListOfOrderDetail(List<OrderDetail> listOfOrderDetail) {
         this.listOfOrderDetail = listOfOrderDetail;
+    }
+
+    public OrderSummary getOrderSummary() {
+        return orderSummary;
+    }
+
+    public void setOrderSummary(OrderSummary orderSummary) {
+        this.orderSummary = orderSummary;
     }
 }

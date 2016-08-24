@@ -3,6 +3,7 @@ package uk.co.virtual1.dialog.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.co.virtual1.dialog.ProvisionDialog;
+import uk.co.virtual1.exception.ProvisioningException;
 import uk.co.virtual1.factory.EadProvisionMessageFactory;
 import uk.co.virtual1.salesforce.object.Case;
 
@@ -15,7 +16,7 @@ public class ProvisionDialogImpl implements ProvisionDialog {
     private EadProvisionMessageFactory eadProvisionMessageFactory;
 
     @Override
-    public void provisionFromCase(Case sfCase) {
+    public void provisionFromCase(Case sfCase) throws ProvisioningException {
         String xml = eadProvisionMessageFactory.createMessage(sfCase);
         System.out.println(xml);
     }

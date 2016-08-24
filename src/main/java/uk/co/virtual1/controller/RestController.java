@@ -22,11 +22,11 @@ public class RestController extends BaseController {
 
     @RequestMapping("/ping")
     public String ping() throws IOException {
-        return JsonResponse.ok();
+        return JsonResponse.ok("ping succeed");
     }
 
     @RequestMapping("/provision")
-    public String ping(@RequestBody Case aCase) throws IOException {
+    public String ping(@RequestBody Case aCase) throws Exception {
         provisionDialog.provisionFromCase(aCase);
         return JsonResponse.ok();
     }

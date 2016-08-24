@@ -4,7 +4,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 import org.springframework.util.xml.TransformerUtils;
 import org.w3c.dom.Document;
-import uk.co.virtual1.exception.SerializationException;
+import uk.co.virtual1.exception.InternalApplicationException;
 import uk.co.virtual1.model.xml.out.PurchaseOrder;
 
 import javax.xml.bind.JAXBContext;
@@ -58,7 +58,7 @@ public class SoapSerializer {
         return factory.createMessage(null, bis);
     }
 
-    public Object deserialize(String xml) throws SerializationException {
+    public Object deserialize(String xml) {
         try {
             StringReader stringReader = new StringReader(xml);
             Object object = jaxbContext.createUnmarshaller().unmarshal(stringReader);
@@ -67,11 +67,11 @@ public class SoapSerializer {
             }
             return object;
         } catch (JAXBException e) {
-            throw new SerializationException(e);
+            throw new InternalApplicationException(e);
         }
     }
 
-    public String serialize(Object o) throws SerializationException {
+    public String serialize(Object o) {
         try {
             Marshaller marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
@@ -81,7 +81,7 @@ public class SoapSerializer {
             marshaller.marshal(o, stream);
             return new String(stream.toByteArray());
         } catch (JAXBException e) {
-            throw new SerializationException(e);
+            throw new InternalApplicationException(e);
         }
     }
 

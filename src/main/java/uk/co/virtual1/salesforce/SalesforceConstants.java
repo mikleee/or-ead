@@ -23,6 +23,7 @@ public interface SalesforceConstants {
     String ACCESS_PRICING_ENTRY_TYPE = "Access Pricing Entry";
     String ASSET_PRICING_ENTRY_TYPE = "Asset Pricing Entry";
     String COMPONENT_PRICING_ENTRY_TYPE = "Component Pricing Entry";
+    String BILLING_FREQUENCY_QUARTERLY = "Quarterly";
 
     //record types
     String ACCESS_RECORD_TYPE = "Access__c";

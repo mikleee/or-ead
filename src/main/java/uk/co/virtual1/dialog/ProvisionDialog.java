@@ -1,5 +1,6 @@
 package uk.co.virtual1.dialog;
 
+import uk.co.virtual1.exception.ProvisioningException;
 import uk.co.virtual1.salesforce.object.Case;
 
 /**
@@ -7,6 +8,6 @@ import uk.co.virtual1.salesforce.object.Case;
  */
 public interface ProvisionDialog {
 
-    void provisionFromCase(Case sfCase);
+    void provisionFromCase(Case sfCase) throws ProvisioningException;
 
 }

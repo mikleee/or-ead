@@ -1,16 +1,12 @@
 package uk.co.virtual1.model.xml.out;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 /**
  * @author Mikhail Tkachenko created on 22.08.16 10:31
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Party")
+@XmlType
 public class BuyerPartyDetails {
     @XmlAttribute(name = "PartyID")
     private String partyID;

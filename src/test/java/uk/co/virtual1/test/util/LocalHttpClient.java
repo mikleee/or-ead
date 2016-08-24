@@ -1,6 +1,7 @@
 package uk.co.virtual1.test.util;
 
 import flexjson.JSONSerializer;
+import org.apache.log4j.Logger;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -13,6 +14,7 @@ import java.net.URL;
  * @author Mikhail Tkachenko created on 26.05.16 11:14
  */
 public final class LocalHttpClient {
+    private final static Logger LOGGER = Logger.getLogger(LocalHttpClient.class);
     private JSONSerializer serializer = new JSONSerializer();
 
     public String send(String uri, Object requestBody) {
@@ -60,6 +62,7 @@ public final class LocalHttpClient {
                 result.append(inputLine);
             }
         }
+        LOGGER.trace(result);
         return result.toString();
     }
 

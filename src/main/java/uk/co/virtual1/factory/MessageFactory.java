@@ -2,6 +2,7 @@ package uk.co.virtual1.factory;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import uk.co.virtual1.exception.ProvisioningException;
 import uk.co.virtual1.model.xml.out.BritishAddress;
 import uk.co.virtual1.model.xml.out.DetailedContact;
 import uk.co.virtual1.model.xml.out.Location;
@@ -25,12 +26,12 @@ abstract class MessageFactory {
     private SoapSerializer serializer;
 
 
-    public String createMessage(Case sfCase) {
+    public String createMessage(Case sfCase) throws ProvisioningException {
         Object object = createObject(sfCase);
         return serializer.serialize(object);
     }
 
-    abstract Object createObject(Case sfCase);
+    abstract Object createObject(Case sfCase) throws ProvisioningException;
 
     Site createSite(uk.co.virtual1.salesforce.object.Site site) {
         Site result = new Site();
@@ -64,6 +65,7 @@ abstract class MessageFactory {
         return detailedContact;
     }
 
+    // TODO: 24.08.2016
     DetailedContact createDetailedContact(uk.co.virtual1.salesforce.object.Site site) {
         DetailedContact detailedContact = new DetailedContact();
         detailedContact.setContactName(site.getEndCustomer().getName());

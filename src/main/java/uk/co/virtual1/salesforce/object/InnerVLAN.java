@@ -3,7 +3,7 @@ package uk.co.virtual1.salesforce.object;
 public class InnerVLAN extends BaseSalesforceObject {
 
     private static final long serialVersionUID = 1L;
-    
+
     private String CIR;
     private String LANIPv4Gateway;
     private String vpnName;
@@ -37,18 +37,18 @@ public class InnerVLAN extends BaseSalesforceObject {
     public void setVpnType(String vpnType) {
         this.vpnType = vpnType;
     }
-    
-    public String getOuterVLANName() {
-		return outerVLANName;
-	}
 
-	public void setOuterVLANName(String outerVLANName) {
-		this.outerVLANName = outerVLANName;
-	}
-	
-	public String getLANIPv4Gateway() {
-		return LANIPv4Gateway;
-	}
+    public String getOuterVLANName() {
+        return outerVLANName;
+    }
+
+    public void setOuterVLANName(String outerVLANName) {
+        this.outerVLANName = outerVLANName;
+    }
+
+    public String getLANIPv4Gateway() {
+        return LANIPv4Gateway;
+    }
 
     public String getRelatedLANPort() {
         return relatedLANPort;
@@ -59,9 +59,9 @@ public class InnerVLAN extends BaseSalesforceObject {
     }
 
     public void setLANIPv4Gateway(String lANIPv4Gateway) {
-		LANIPv4Gateway = lANIPv4Gateway;
+        LANIPv4Gateway = lANIPv4Gateway;
         subnetMask = SubnetIPMask.getMask(lANIPv4Gateway);
-	}
+    }
 
     public String getSubnetMask() {
         return subnetMask;

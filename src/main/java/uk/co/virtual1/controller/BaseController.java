@@ -14,9 +14,4 @@ abstract class BaseController {
         return JsonResponse.error(e.getMessage());
     }
 
-    String onRegularRequestException(Exception e) {
-        logger.error(e, e);
-        return "redirect:error-page";
-    }
-
 }

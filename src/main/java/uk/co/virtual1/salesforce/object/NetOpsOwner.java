@@ -4,28 +4,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NetOpsOwner {
-	
-	private String name;
-	
-	private List<NetOpsCase> cases;
 
-	public String getName() {
-		return name;
-	}
+    private String name;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    private List<NetOpsCase> cases;
 
-	public List<NetOpsCase> getCases() {
-		if (cases == null) {
-			cases = new ArrayList<NetOpsCase>();
-		}
-		return cases;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setCases(List<NetOpsCase> cases) {
-		this.cases = cases;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<NetOpsCase> getCases() {
+        if (cases == null) {
+            cases = new ArrayList<NetOpsCase>();
+        }
+        return cases;
+    }
+
+    public void setCases(List<NetOpsCase> cases) {
+        this.cases = cases;
+    }
 
 }
