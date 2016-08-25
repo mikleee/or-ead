@@ -4,26 +4,27 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import uk.co.virtual1.exception.ProvisioningException;
 import uk.co.virtual1.model.xml.out.BritishAddress;
+import uk.co.virtual1.model.xml.out.Constants;
 import uk.co.virtual1.model.xml.out.DetailedContact;
 import uk.co.virtual1.model.xml.out.Location;
 import uk.co.virtual1.model.xml.out.Site;
 import uk.co.virtual1.salesforce.object.Case;
+import uk.co.virtual1.service.ApplicationEnvironment;
 import uk.co.virtual1.service.SoapSerializer;
+
+import static uk.co.virtual1.service.EnvironmentKey.*;
 
 /**
  * @author Mikhail Tkachenko created on 23.08.16 15:24
  */
 abstract class MessageFactory {
-    final static String VIRTUAL1_CONTACT_NAME = "Provisioning Team";
-    final static String VIRTUAL1_CONTACT_PHONE = "03448840800";
-    final static String VIRTUAL1_CONTACT_EMAIL = "provisioning@virtual1.com";
-    final static String VIRTUAL1_CONTACT_TITLE = "Mr";
-    final static String VIRTUAL1_CONTACT_FIRST_NAME = "Provisioning";
 
     @Autowired
     MessageFactoryUtils factoryUtils;
     @Autowired
     private SoapSerializer serializer;
+    @Autowired
+    ApplicationEnvironment environment;
 
 
     public String createMessage(Case sfCase) throws ProvisioningException {
@@ -36,7 +37,7 @@ abstract class MessageFactory {
     Site createSite(uk.co.virtual1.salesforce.object.Site site) {
         Site result = new Site();
 
-        result.setCompanyName(site.getEndCustomer().getName()); // TODO: 23.08.16
+        result.setCompanyName(site.getEndCustomer().getName());
         result.setOnSiteTelephone(site.getPhone());
 
         BritishAddress britishAddress = result.getAddress().getBritishAddress();
@@ -54,13 +55,28 @@ abstract class MessageFactory {
         return result;
     }
 
+    // TODO: 25.08.16
+    Site createSiteAEnd(uk.co.virtual1.salesforce.object.Site site) {
+        Site result = new Site();
+        result.setEnd(Constants.END_A);
+        result.setCompanyName("value need to be clarified");
+
+        BritishAddress britishAddress = result.getAddress().getBritishAddress();
+        britishAddress.setPremisesName(site.getBuildingName());
+        britishAddress.setThoroughfareNumber("value need to be clarified");
+        britishAddress.setThoroughfareName("value need to be clarified");
+        britishAddress.setPostTown("value need to be clarified");
+        britishAddress.setPostCode("value need to be clarified");
+        return result;
+    }
+
     DetailedContact virtual1DetailedContact() {
         DetailedContact detailedContact = new DetailedContact();
-        detailedContact.setContactName(VIRTUAL1_CONTACT_NAME);
-        detailedContact.setTelephone(VIRTUAL1_CONTACT_PHONE);
-        detailedContact.setEmail(VIRTUAL1_CONTACT_EMAIL);
-        detailedContact.setTitle(VIRTUAL1_CONTACT_TITLE);
-        detailedContact.setFirstName(VIRTUAL1_CONTACT_FIRST_NAME);
+        detailedContact.setContactName(environment.get(VIRTUAL1_CONTACT_NAME));
+        detailedContact.setTelephone(environment.get(VIRTUAL1_CONTACT_PHONE));
+        detailedContact.setEmail(environment.get(VIRTUAL1_CONTACT_EMAIL));
+        detailedContact.setTitle(environment.get(VIRTUAL1_CONTACT_TITLE));
+        detailedContact.setFirstName(environment.get(VIRTUAL1_CONTACT_FIRST_NAME));
         detailedContact.setInitials(StringUtils.EMPTY);
         return detailedContact;
     }
@@ -69,10 +85,10 @@ abstract class MessageFactory {
     DetailedContact createDetailedContact(uk.co.virtual1.salesforce.object.Site site) {
         DetailedContact detailedContact = new DetailedContact();
         detailedContact.setContactName(site.getEndCustomer().getName());
-        detailedContact.setTelephone(VIRTUAL1_CONTACT_PHONE);
-        detailedContact.setEmail(VIRTUAL1_CONTACT_EMAIL);
-        detailedContact.setTitle(VIRTUAL1_CONTACT_TITLE);
-        detailedContact.setFirstName(VIRTUAL1_CONTACT_FIRST_NAME);
+        detailedContact.setTelephone("todo");
+        detailedContact.setEmail("todo");
+        detailedContact.setTitle("todo");
+        detailedContact.setFirstName("todo");
         detailedContact.setInitials(StringUtils.EMPTY);
         return detailedContact;
     }

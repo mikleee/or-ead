@@ -11,6 +11,13 @@ public class FeedItem extends ChildObject {
     private byte[] contentData;
 
 
+    public FeedItem(String parentId, String fileName, String body, byte[] contentData) {
+        this.parentId = parentId;
+        this.fileName = fileName;
+        this.contentData = contentData;
+        this.body = body;
+    }
+
     public String getBody() {
         return body;
     }

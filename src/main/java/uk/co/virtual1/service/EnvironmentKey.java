@@ -4,8 +4,9 @@ import org.apache.commons.lang.StringUtils;
 
 import java.util.regex.Pattern;
 
-import static java.util.regex.Pattern.compile;
-import static uk.co.virtual1.service.EnviromentKeyPatterns.*;
+import static uk.co.virtual1.service.EnviromentKeyPatterns.BOOLEAN;
+import static uk.co.virtual1.service.EnviromentKeyPatterns.NUMBER;
+import static uk.co.virtual1.service.EnviromentKeyPatterns.STRING;
 
 /**
  * @author Mikhail Tkachenko created on 26.05.16 16:35
@@ -17,8 +18,16 @@ public enum EnvironmentKey {
     SF_USER_NAME("sf.userName", STRING),
     SF_PASSWORD("sf.password", STRING),
     SF_TOKEN("sf.token"),
-    SF_SANDBOX("sf.sandbox", BOOLEAN);
+    SF_SANDBOX("sf.sandbox", BOOLEAN),
 
+    VIRTUAL1_ACCOUNT_REF_NUM("virtual1.accountRefNum", STRING),
+    VIRTUAL1_CONTACT_NAME("virtual1.contactName", STRING),
+    VIRTUAL1_CONTACT_PHONE("virtual1.contactPhone", STRING),
+    VIRTUAL1_CONTACT_EMAIL("virtual1.contactEmail", STRING),
+    VIRTUAL1_CONTACT_TITLE("virtual1.contactTitle", STRING),
+    VIRTUAL1_CONTACT_FIRST_NAME("virtual1.contactFirstName", STRING),
+    VIRTUAL1_NUMBER_OF_WORKING_DAYS("virtual1.numberOfWorkingDays", NUMBER),
+    VIRTUAL1_BUYER_PARTY_ID("virtual1.buyerPartyId", STRING);
 
     String key;
     Pattern pattern;

@@ -226,10 +226,8 @@ public class SfIpJust extends BaseSalesforceObject {
         if (!super.equals(o)) return false;
 
         SfIpJust sfIpJust = (SfIpJust) o;
-        if (getLastModifiedDate() != null ? !getLastModifiedDate().equals(sfIpJust.getLastModifiedDate()) : sfIpJust.getLastModifiedDate() != null)
-            return false;
-        if (getNetworkDiagram() != null ? !getNetworkDiagram().equals(sfIpJust.getNetworkDiagram()) : sfIpJust.getNetworkDiagram() != null)
-            return false;
+        if (getLastModifiedDate() != null ? !getLastModifiedDate().equals(sfIpJust.getLastModifiedDate()) : sfIpJust.getLastModifiedDate() != null) return false;
+        if (getNetworkDiagram() != null ? !getNetworkDiagram().equals(sfIpJust.getNetworkDiagram()) : sfIpJust.getNetworkDiagram() != null) return false;
         return true;
     }
 

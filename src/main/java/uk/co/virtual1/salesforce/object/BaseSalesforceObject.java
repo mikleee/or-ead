@@ -1,5 +1,8 @@
 package uk.co.virtual1.salesforce.object;
 
+import com.sforce.ws.bind.XmlObject;
+import org.apache.commons.lang.StringUtils;
+import org.joda.time.format.ISODateTimeFormat;
 import uk.co.virtual1.salesforce.cache.CachedSalesforceObject;
 
 import java.util.Date;
@@ -70,6 +73,11 @@ public abstract class BaseSalesforceObject extends CachedSalesforceObject {
 
     public Map<String, Object> getCustomFields() {
         return customFields;
+    }
+
+    protected Date getDate(XmlObject sObject, String fieldName) {
+        String strDate = (String) sObject.getField(fieldName);
+        return StringUtils.isNotBlank(strDate) ? ISODateTimeFormat.dateTimeParser().parseDateTime(strDate).toDate() : null;
     }
 
     @Override

@@ -11,8 +11,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType
 public class UnitOfMeasure {
-    @XmlElement(name = "UOF")
-    private String uof = "EA";
+    @XmlElement(name = "UOM")
+    private String uof;
 
     public String getUof() {
         return uof;

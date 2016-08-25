@@ -1,6 +1,5 @@
 package uk.co.virtual1.salesforce.cache;
 
-
 import uk.co.virtual1.salesforce.object.BaseSalesforceObject;
 
 import java.lang.annotation.ElementType;

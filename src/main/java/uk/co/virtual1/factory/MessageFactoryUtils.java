@@ -10,13 +10,20 @@ import uk.co.virtual1.salesforce.object.Access;
 import uk.co.virtual1.salesforce.object.Case;
 import uk.co.virtual1.salesforce.object.PricingEntry;
 import uk.co.virtual1.salesforce.object.VLAN;
+import uk.co.virtual1.service.ApplicationEnvironment;
+import uk.co.virtual1.service.EnvironmentKey;
 import uk.co.virtual1.service.FtlTemplateService;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Mikhail Tkachenko created on 23.08.16 15:26
@@ -25,6 +32,8 @@ import java.util.*;
 public class MessageFactoryUtils {
     @Autowired
     private FtlTemplateService ftlTemplateService;
+    @Autowired
+    private ApplicationEnvironment environment;
 
 
     XMLGregorianCalendar calendar() {
@@ -43,6 +52,11 @@ public class MessageFactoryUtils {
         return calendar(gregorianCalendar);
     }
 
+    XMLGregorianCalendar requestedDeliverydate(Case sfCase) {
+        Integer days = environment.getInt(EnvironmentKey.VIRTUAL1_NUMBER_OF_WORKING_DAYS);
+        return calendar(sfCase.getOrderReceived(), days);
+    }
+
     private XMLGregorianCalendar calendar(GregorianCalendar gregorianCalendar) {
         try {
             return DatatypeFactory.newInstance().newXMLGregorianCalendar(gregorianCalendar);
@@ -51,8 +65,8 @@ public class MessageFactoryUtils {
         }
     }
 
-    String buyerRefNum(Case aCase) {
-        return aCase.getCaseNumber() + "-" + aCase.getAccess().getName();
+    String buyerRefNum(Case sfCase) {
+        return sfCase.getCaseNumber() + "-" + sfCase.getAccess().getName();
     }
 
 
@@ -61,11 +75,11 @@ public class MessageFactoryUtils {
         String bearerSpeed = access.getBearerSpeed();
 
         if ("Ethernet RJ45".equals(interfaceType) && "30mb".equals(bearerSpeed)) {
-            return "100 Base - T (RJ-45)";
+            return "100Base - T (RJ-45)";
         } else if ("Ethernet RJ45".equals(interfaceType) && "100mb".equals(bearerSpeed)) {
-            return "100 Base - T (RJ-45)";
+            return "100Base - T (RJ-45)";
         } else if ("LC Single mode".equals(interfaceType) && "1000mb".equals(bearerSpeed)) {
-            return "1000 Base-LX(SMF)";
+            return "1000Base-LX(SMF)";
         } else {
             return null;
         }

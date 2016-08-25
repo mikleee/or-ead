@@ -1,5 +1,5 @@
 /**
- *
+ * 
  */
 package uk.co.virtual1.salesforce.object;
 
@@ -9,49 +9,50 @@ import java.math.BigDecimal;
 
 /**
  * @author nsaputro
+ *
  */
 public class Quote extends BaseSalesforceObject {
+	
+	private static final long serialVersionUID = 1L;
 
-    private static final long serialVersionUID = 1L;
+	private String carrierProvider; //Carrier_Provider__c
+	
+	private String postCode; //Post_code__c
+	
+	private String product; //Product__c
+	
+	private BigDecimal quotePrice; //Quote_Price__c
 
-    private String carrierProvider; //Carrier_Provider__c
+	public String getCarrierProvider() {
+		return carrierProvider;
+	}
 
-    private String postCode; //Post_code__c
+	public void setCarrierProvider(String carrierProvider) {
+		this.carrierProvider = carrierProvider;
+	}
 
-    private String product; //Product__c
+	public String getPostCode() {
+		return postCode;
+	}
 
-    private BigDecimal quotePrice; //Quote_Price__c
+	public void setPostCode(String postCode) {
+		this.postCode = StringUtils.upperCase(postCode);
+	}
 
-    public String getCarrierProvider() {
-        return carrierProvider;
-    }
+	public String getProduct() {
+		return product;
+	}
 
-    public void setCarrierProvider(String carrierProvider) {
-        this.carrierProvider = carrierProvider;
-    }
+	public void setProduct(String product) {
+		this.product = product;
+	}
 
-    public String getPostCode() {
-        return postCode;
-    }
+	public BigDecimal getQuotePrice() {
+		return quotePrice;
+	}
 
-    public void setPostCode(String postCode) {
-        this.postCode = StringUtils.upperCase(postCode);
-    }
-
-    public String getProduct() {
-        return product;
-    }
-
-    public void setProduct(String product) {
-        this.product = product;
-    }
-
-    public BigDecimal getQuotePrice() {
-        return quotePrice;
-    }
-
-    public void setQuotePrice(BigDecimal quotePrice) {
-        this.quotePrice = quotePrice;
-    }
-
+	public void setQuotePrice(BigDecimal quotePrice) {
+		this.quotePrice = quotePrice;
+	}
+	
 }

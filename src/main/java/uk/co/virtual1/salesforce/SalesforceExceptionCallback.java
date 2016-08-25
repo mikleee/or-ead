@@ -4,6 +4,6 @@ import com.sforce.soap.partner.fault.ApiFault;
 
 public interface SalesforceExceptionCallback {
 
-    void onError(ApiFault apiFault);
-
+	void onError(ApiFault apiFault);
+	
 }

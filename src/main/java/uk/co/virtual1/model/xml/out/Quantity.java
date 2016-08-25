@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType
 public class Quantity {
     @XmlElement(name = "Qty")
-    private String qty = "1";
+    private String qty;
     @XmlElement(name = "UnitOfMeasure")
     private UnitOfMeasure unitOfMeasure = new UnitOfMeasure();
 

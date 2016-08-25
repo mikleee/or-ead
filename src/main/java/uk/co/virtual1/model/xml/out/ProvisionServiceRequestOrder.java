@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlSeeAlso({EADProvisionServiceRequestOrder.class})
 public abstract class ProvisionServiceRequestOrder extends ServiceRequestOrder {
     @XmlElement(name = "LineItemNum")
-    private String lineItemNum = "1";
+    private String lineItemNum;
     @XmlElement(name = "SupplierPartNum")
     private SupplierPartNum supplierPartNum = new SupplierPartNum();
     @XmlElement(name = "Quantity")
@@ -23,7 +23,7 @@ public abstract class ProvisionServiceRequestOrder extends ServiceRequestOrder {
     private Site siteA;
     @XmlElement(name = "Site", namespace = Constants.SERVICE_REQUEST_ORDER_NS)
     private Site siteB;
-    @XmlElement(name = "LineItemReference", namespace = Constants.SERVICE_REQUEST_ORDER_NS)
+    @XmlElement(name = "Features", namespace = Constants.SERVICE_REQUEST_ORDER_NS)
     private Features features;
 
     public ProvisionServiceRequestOrder() {

@@ -16,7 +16,7 @@ public class VPN extends BaseSalesforceObject {
     private String vpnDescription;
 
     @SalesforceRelation
-    private EndCustomer endCustomer = new EndCustomer();
+    private EndCustomer endCustomer= new EndCustomer();
 
     private List<VPNItem> radiuses = new ArrayList<>();
     private List<VPNItem> vlans = new ArrayList<>();

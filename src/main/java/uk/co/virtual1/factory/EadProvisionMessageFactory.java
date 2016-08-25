@@ -5,8 +5,12 @@ import uk.co.virtual1.exception.ProvisioningException;
 import uk.co.virtual1.model.xml.out.*;
 import uk.co.virtual1.salesforce.object.Access;
 import uk.co.virtual1.salesforce.object.Case;
+import uk.co.virtual1.service.EnvironmentKey;
 
 import java.math.BigDecimal;
+
+import static uk.co.virtual1.service.EnvironmentKey.VIRTUAL1_ACCOUNT_REF_NUM;
+import static uk.co.virtual1.service.EnvironmentKey.VIRTUAL1_BUYER_PARTY_ID;
 
 /**
  * @author Mikhail Tkachenko created on 23.08.16 14:04
@@ -33,11 +37,11 @@ public class EadProvisionMessageFactory extends MessageFactory {
         OrderHeader orderHeader = new OrderHeader();
 
         orderHeader.setPoIssuedDate(factoryUtils.calendar());
-        orderHeader.setRequestedDeliveryDate(factoryUtils.calendar(sfCase.getOrderReceived(), 100)); // TODO: 23.08.16  Order received date + number of working days (Salesforce config option)
+        orderHeader.setRequestedDeliveryDate(factoryUtils.requestedDeliverydate(sfCase));
 
         // orderReference
         OrderReference orderReference = orderHeader.getOrderReference();
-        orderReference.getAccountCode().getReference().setRefNum("AccountCode"); // TODO: 23.08.16
+        orderReference.getAccountCode().getReference().setRefNum(environment.get(VIRTUAL1_ACCOUNT_REF_NUM));
         orderReference.getBuyerRefNum().getReference().setRefNum(factoryUtils.buyerRefNum(sfCase));
 
 
@@ -45,7 +49,7 @@ public class EadProvisionMessageFactory extends MessageFactory {
         OrderParty orderParty = orderHeader.getOrderParty();
 
         BuyerParty buyerParty = orderParty.getBuyerParty();
-        buyerParty.getParty().setPartyID("219966525"); // TODO: 23.08.16
+        buyerParty.getParty().setPartyID(environment.get(VIRTUAL1_BUYER_PARTY_ID));
         buyerParty.getParty().getOrderContact().setDetailedContact(virtual1DetailedContact());
 
         return orderHeader;
@@ -57,6 +61,9 @@ public class EadProvisionMessageFactory extends MessageFactory {
 
         EADProvisionServiceRequestOrder requestOrder = new EADProvisionServiceRequestOrder();
         orderDetail.setServiceRequestOrder(requestOrder);
+        requestOrder.setLineItemNum("1");
+        requestOrder.getQuantity().setQty("1");
+        requestOrder.getQuantity().getUnitOfMeasure().setUof("EA");
 
         requestOrder.getSupplierPartNum().getPartNum().setPartID(Constants.ETHERNET_ACCESS_DIRECT_OR);
 
@@ -71,14 +78,14 @@ public class EadProvisionMessageFactory extends MessageFactory {
             requestOrder.setSiteB(site);
         }
 
-        requestOrder.getLineItemReference().setBuyerLineReference("customer line item reference todo");
+        requestOrder.getLineItemReference().setBuyerLineReference("1");
 
         EADFeatures eadFeatures = createFeatures(access);
         requestOrder.setFeatures(eadFeatures);
 
         orderDetail.setSpecialHandlingNote(Constants.BLANK);
         orderDetail.setGeneralNote(factoryUtils.generalNote(sfCase)); // TODO: 24.08.2016  
-        orderDetail.setRequestedDeliveryDate(factoryUtils.calendar(sfCase.getOrderReceived(), 100)); // TODO: 24.08.2016  
+        orderDetail.setRequestedDeliveryDate(factoryUtils.requestedDeliverydate(sfCase));
         orderDetail.getBuyerExpectedUnitPrice().getPrice().setUnitPrice(factoryUtils.unitPrice(access));
 
         return orderDetail;

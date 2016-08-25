@@ -65,7 +65,8 @@ public class Case extends BaseSalesforceObject {
     private Date endToEndTestDate; //End_to_End_Test_Date__c
     private String endToEndTestTime;//End_to_End_Test_Time__c
 
-    private String siteName; //Site_Name_B_End__c
+    private String siteNameBEnd; //Site_Name_B_End__c
+    private String phoneBEnd; //Phone_B_End__c
     private String postCode; //Post_Code_B_End__c
     private String address; //Address_B_End__c
 
@@ -718,12 +719,25 @@ public class Case extends BaseSalesforceObject {
         this.deskTopSurveyDate = deskTopSurveyDate;
     }
 
+    @Deprecated // use getSiteNameBEnd instead
     public String getSiteName() {
-        return siteName;
+        return getSiteNameBEnd();
     }
 
-    public void setSiteName(String siteName) {
-        this.siteName = siteName;
+    public String getSiteNameBEnd() {
+        return siteNameBEnd;
+    }
+
+    public void setSiteNameBEnd(String siteNameBEnd) {
+        this.siteNameBEnd = siteNameBEnd;
+    }
+
+    public String getPhoneBEnd() {
+        return phoneBEnd;
+    }
+
+    public void setPhoneBEnd(String phoneBEnd) {
+        this.phoneBEnd = phoneBEnd;
     }
 
     public String getPostCode() {

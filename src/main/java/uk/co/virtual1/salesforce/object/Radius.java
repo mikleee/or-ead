@@ -42,22 +42,22 @@ public class Radius extends BaseSalesforceObject {
     public void setVpnType(String vpnType) {
         this.vpnType = vpnType;
     }
-
+    
     public String getUsername() {
-        return username;
-    }
+		return username;
+	}
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
     public String getSubnetMask() {
         return subnetMask;
@@ -86,5 +86,5 @@ public class Radius extends BaseSalesforceObject {
     public void setVPN__c(String VPN__c) {
         this.VPN__c = VPN__c;
     }
-
+    
 }

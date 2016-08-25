@@ -13,6 +13,7 @@ import com.sforce.soap.partner.sobject.SObject;
 import com.sforce.ws.ConnectionException;
 import com.sforce.ws.ConnectorConfig;
 import com.sforce.ws.SessionRenewer;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,7 +36,6 @@ final class SalesforceDataSource {
     private ApplicationEnvironment environment;
 
     private SalesforceExceptionCallback exceptionHandler;
-
     private PartnerConnection connection;
 
 
@@ -52,26 +52,18 @@ final class SalesforceDataSource {
         }
     }
 
-    PartnerConnection getConnection() {
+    private PartnerConnection getConnection() {
         if (connection == null) {
             createConnection();
         }
         return connection;
     }
 
-    private void createConnection() {
+    private void createConnection() throws SalesforceException {
         try {
             ConnectorConfig config = createConnectorConfig();
             connection = Connector.newConnection(config);
-
-            //Create metadata connection
-            ConnectorConfig metadataConfig = new ConnectorConfig();
-            metadataConfig.setSessionId(connection.getSessionHeader().getSessionId());
-
-            // hack http://code.google.com/p/sfdc-wsc/issues/detail?id=37
-            String metaurl = config.getServiceEndpoint();
-            metaurl = metaurl.replace("Soap/u", "Soap/m");
-            metadataConfig.setServiceEndpoint(metaurl);
+            connection.setCallOptions("oe-ead", null);
         } catch (ApiFault e) {
             handleApiFault(e);
             throw new SalesforceException("Error on connecting to Salesforce.", e);
@@ -88,7 +80,7 @@ final class SalesforceDataSource {
         }
 
         config.setUsername(environment.get(EnvironmentKey.SF_USER_NAME));
-        config.setPassword(environment.get(EnvironmentKey.SF_PASSWORD) + environment.get(EnvironmentKey.SF_TOKEN));
+        config.setPassword(environment.get(EnvironmentKey.SF_PASSWORD) + StringUtils.defaultString(environment.get(EnvironmentKey.SF_TOKEN)));
         config.setSessionRenewer(new SessionRenewerImpl());
         return config;
     }
@@ -162,7 +154,7 @@ final class SalesforceDataSource {
         }
     }
 
-    List<String> update(SObject[] sfObjects) {
+    List<String> update(SObject[] sfObjects) throws SalesforceException {
         try {
             List<String> ids = new ArrayList<>();
             SaveResult[] create = getConnection().update(sfObjects);

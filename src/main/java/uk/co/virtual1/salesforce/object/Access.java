@@ -15,6 +15,8 @@ public class Access extends AbstractCaseItem {
     private Site siteAEnd; // Site_Name_A_End__c
     @SalesforceRelation
     private Site siteBEnd; // Site_Name_B_End__c
+    @SalesforceRelation
+    private Exchange exchange; //Serving_Exchange_Code__c
 
     @SalesforceParentId
     private String projectId;
@@ -59,7 +61,6 @@ public class Access extends AbstractCaseItem {
     private Date contractEndDate; //Service_End_Date__c
     private Date created;
 
-    private String servingExchangeCodeId; //Serving_Exchange_Code__c
     private String carrierNNIId;
 
     private String carrierInterfaceBEnd; //Carrier_Interface_B_End__c
@@ -106,6 +107,14 @@ public class Access extends AbstractCaseItem {
     @Override
     protected Site getSite() {
         return getSiteBEnd();
+    }
+
+    public Exchange getExchange() {
+        return exchange;
+    }
+
+    public void setExchange(Exchange exchange) {
+        this.exchange = exchange;
     }
 
     public Date getCreated() {
@@ -322,14 +331,6 @@ public class Access extends AbstractCaseItem {
 
     public void setServiceId(String serviceId) {
         this.serviceId = serviceId;
-    }
-
-    public String getServingExchangeCodeId() {
-        return servingExchangeCodeId;
-    }
-
-    public void setServingExchangeCodeId(String servingExchangeCodeId) {
-        this.servingExchangeCodeId = servingExchangeCodeId;
     }
 
     public String getCarrierCIR() {

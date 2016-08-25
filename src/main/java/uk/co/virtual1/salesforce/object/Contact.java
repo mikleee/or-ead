@@ -1,5 +1,7 @@
 package uk.co.virtual1.salesforce.object;
 
+import org.apache.commons.lang.StringUtils;
+
 public class Contact extends BaseSalesforceObject {
     private static final long serialVersionUID = 1L;
 
@@ -11,10 +13,10 @@ public class Contact extends BaseSalesforceObject {
     private String jobTitle; //Title
     private String roles;
 
-    private Boolean x1PortalUSer = true; //X1Portal_User__c
-    private Boolean hasOptedOutOfEmail = false; //HasOptedOutOfEmail
-    private Boolean doNotCall = false; //DoNotCall
-    private String department = ""; //Department
+	private Boolean x1PortalUSer = true; //X1Portal_User__c
+	private Boolean hasOptedOutOfEmail = false; //HasOptedOutOfEmail
+	private Boolean doNotCall = false; //DoNotCall
+	private String department = StringUtils.EMPTY; //Department
 
     /**
      * @return the telephone
@@ -45,76 +47,76 @@ public class Contact extends BaseSalesforceObject {
     }
 
     public String getFirstName() {
-        return firstName;
-    }
+		return firstName;
+	}
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-    public String getLastName() {
-        return lastName;
-    }
+	public String getLastName() {
+		return lastName;
+	}
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	
+	public String getAccountId() {
+		return accountId;
+	}
 
-    public String getAccountId() {
-        return accountId;
-    }
+	public void setAccountId(String accountId) {
+		this.accountId = accountId;
+	}
 
-    public void setAccountId(String accountId) {
-        this.accountId = accountId;
-    }
+	public String getRoles() {
+		return roles;
+	}
 
-    public String getRoles() {
-        return roles;
-    }
+	public void setRoles(String roles) {
+		this.roles = roles;
+	}
+	
+	public String getJobTitle() {
+		return jobTitle;
+	}
 
-    public void setRoles(String roles) {
-        this.roles = roles;
-    }
+	public void setJobTitle(String jobTitle) {
+		this.jobTitle = jobTitle;
+	}
 
-    public String getJobTitle() {
-        return jobTitle;
-    }
+	public Boolean getX1PortalUSer() {
+		return x1PortalUSer;
+	}
 
-    public void setJobTitle(String jobTitle) {
-        this.jobTitle = jobTitle;
-    }
+	public void setX1PortalUSer(Boolean x1PortalUSer) {
+		this.x1PortalUSer = x1PortalUSer;
+	}
 
-    public Boolean getX1PortalUSer() {
-        return x1PortalUSer;
-    }
+	public Boolean getHasOptedOutOfEmail() {
+		return hasOptedOutOfEmail;
+	}
 
-    public void setX1PortalUSer(Boolean x1PortalUSer) {
-        this.x1PortalUSer = x1PortalUSer;
-    }
+	public void setHasOptedOutOfEmail(Boolean hasOptedOutOfEmail) {
+		this.hasOptedOutOfEmail = hasOptedOutOfEmail;
+	}
 
-    public Boolean getHasOptedOutOfEmail() {
-        return hasOptedOutOfEmail;
-    }
+	public Boolean getDoNotCall() {
+		return doNotCall;
+	}
 
-    public void setHasOptedOutOfEmail(Boolean hasOptedOutOfEmail) {
-        this.hasOptedOutOfEmail = hasOptedOutOfEmail;
-    }
+	public void setDoNotCall(Boolean doNotCall) {
+		this.doNotCall = doNotCall;
+	}
 
-    public Boolean getDoNotCall() {
-        return doNotCall;
-    }
+	public String getDepartment() {
+		return department;
+	}
 
-    public void setDoNotCall(Boolean doNotCall) {
-        this.doNotCall = doNotCall;
-    }
+	public void setDepartment(String department) {
+		this.department = department;
+	}
 
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
-    }
-
-
+	
 }

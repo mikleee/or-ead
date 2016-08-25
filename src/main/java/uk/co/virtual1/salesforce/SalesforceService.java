@@ -1,6 +1,5 @@
 package uk.co.virtual1.salesforce;
 
-
 import com.sforce.soap.partner.Field;
 import com.sforce.soap.partner.PicklistEntry;
 import com.sforce.soap.partner.sobject.SObject;
@@ -53,8 +52,6 @@ import java.util.Map;
 import static java.lang.String.format;
 import static uk.co.virtual1.salesforce.QueryTemplates.*;
 
-
-@SuppressWarnings("WeakerAccess")
 @Service
 public class SalesforceService {
     private static final Logger LOGGER = Logger.getLogger(SalesforceService.class);
@@ -63,16 +60,8 @@ public class SalesforceService {
 
     private final ConvertingSFObjects converter = new ConvertingSFObjects();
 
-    private final CustomizationType customizationType = CustomizationType.VIRTUAL1;
-
     @Autowired
     private SalesforceDataSource dataSource;
-
-
-    public enum CustomizationType {
-        VIRTUAL1,
-        NONE
-    }
 
 
     public Map<String, String> getPickListValue(String object, String fieldName) {
@@ -110,26 +99,6 @@ public class SalesforceService {
     private Account retrieveAccount(String query) {
         SObject sObject = retrieveOne(query);
         return sObject == null ? null : converter.convertAccount(sObject);
-    }
-
-    public String updateAccountSpecialInstructions(Account account) {
-        switch (customizationType) {
-            case VIRTUAL1:
-                SObject sObject = converter.convertForSpecialInstructionsUpdate(account);
-                return update(sObject, account);
-            default:
-                return null;
-        }
-    }
-
-    public String updateAccountBillingAddress(Account account) {
-        switch (customizationType) {
-            case VIRTUAL1:
-                SObject sObject = converter.convertForBillingAddressUpdate(account);
-                return update(sObject, account);
-            default:
-                return null;
-        }
     }
 
     public AccountPbt getAccountPBT(String accountId) {
@@ -570,12 +539,12 @@ public class SalesforceService {
     // ------------------------ exchange ------------------------
 
     public Exchange getExchange(String id) {
-        String query = format("SELECT %s FROM Exchange__c WHERE Id='%s'", COMMON_FIELDS, id);
+        String query = format("SELECT %s FROM Exchange__c WHERE Id='%s'", EXCHANGE_FIELDS, id);
         return retrieveExchange(query);
     }
 
     public Exchange getExchangeByName(String name) {
-        String query = format("SELECT %s FROM Exchange__c WHERE Name='%s'", COMMON_FIELDS, name);
+        String query = format("SELECT %s FROM Exchange__c WHERE Name='%s'", EXCHANGE_FIELDS, name);
         return retrieveExchange(query);
     }
 

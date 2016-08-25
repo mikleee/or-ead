@@ -14,6 +14,9 @@ class QueryTemplates {
     final static String COMMON_FIELDS = "Id,Name,CreatedDate,LastModifiedDate";
 
 
+    final static String EXCHANGE_FIELDS = COMMON_FIELDS + ",Exchange_Name__c";
+
+
     final static String CONTACT_FIELDS = COMMON_FIELDS + ",AccountId,FirstName,LastName,Email,Phone,Title,Role__c";
 
 
@@ -69,6 +72,7 @@ class QueryTemplates {
             "Carrier_Interface_B_End__c,Carrier_Contract_months__c, " +
             "Carrier_Product_Name_new__c, " +
             "Floor_B_End__c, Room_B_End__c, Rack_B_End__c, " +
+            relation("Serving_Exchange_Code__r", EXCHANGE_FIELDS) + ", " +
             relation("Site_Name_A_End__r", SITE_FIELDS) + ", " +
             relation("Site_Name_B_End__r", SITE_FIELDS);
 
@@ -111,23 +115,22 @@ class QueryTemplates {
     private final static String CASE_FIELDS = "Id,CreatedDate,LastModifiedDate,Owner.Name,AccountId,Account.Name," +
             "ContactId,Contact.Id,Contact.AccountId,Contact.Name,Contact.FirstName,Contact.LastName,Contact.Phone,Contact.Email,Contact.Title,Contact.Department,Contact.Role__c," +
             "RecordType.Name,CaseNumber,Type,Reason," +
-            " Subject, Description,IsEscalated, Provisioning_Escalated__c,Priority,IsClosed,Origin," +
-            " Order_Accepted__c,Lead_Time_Range__c, Carrier_Order_Reference__c, " +
-            " Status,End_Customer_Name__c,Provisional_RFS__c,ECCs_Acceptance_Deadline__c, Partner_Internal_Ref__c," +
-            " NetOps_Owner__r.Name, Order_Received_Date__c, Project_Mngt_Allocated__c, Project_Number1__r.Project_Manager__r.Name," +
-            " Delivery_Schedule__c, Site_Survey_Date__c, Site_Survey_Time__c, " +
-            " Site_Name_B_End__c, Post_Code_B_End__c, Address_B_End__c, " +
-            " Site_Survey_Results__c, Installation_Date__c, Installation_Date_A_End__c, " +
-            " Site_Survey_Date_A_End__c, Site_Survey_Time_A_End__c, Installation_Time_A_End__c, " +
-            " End_to_End_Test_Date__c, " +
-            " In_Service_Date__c, " +
-            " End_to_End_Test_Date_A_End__c, End_to_End_Test_Time_A_End__c, " +
-            " Desk_Top_Survey_Completed__c, Desk_Top_Survey_Date__c," +
-            " Installation_Time__c, End_to_End_Test_Time__c, Virtual1_Engineer_Install_Rqd__c, " +
-            " Qube_Install_Date__c, Qube_Install_Slot__c," +
-            " Analogue_Order_Accepted_Date__c, Analogue_Committed_Date__c,Analogue_Installation_Date__c,Analogue_Installation_Time__c,Carrier_Provider__c," +
-            " Estimated_Completion_Date__c, MinimumGuaranteedSpeed__c," +
-            " Next_Update_Due__c, Carrier_Appointment_Date__c, Carrier_Appointment_Reference__c, Carrier_Appointment_Timeslot__c, Project_Number1__c," +
+            "Subject, Description,IsEscalated,Provisioning_Escalated__c,Priority,IsClosed,Origin," +
+            "Order_Accepted__c,Lead_Time_Range__c,Carrier_Order_Reference__c, " +
+            "Status,End_Customer_Name__c,Provisional_RFS__c,ECCs_Acceptance_Deadline__c,Partner_Internal_Ref__c," +
+            "NetOps_Owner__r.Name,Order_Received_Date__c,Project_Mngt_Allocated__c,Project_Number1__r.Project_Manager__r.Name," +
+            "Delivery_Schedule__c,Site_Survey_Date__c,Site_Survey_Time__c," +
+            "Site_Name_B_End__c,Phone_B_End__c,Post_Code_B_End__c,Address_B_End__c," +
+            "Site_Survey_Results__c,Installation_Date__c,Installation_Date_A_End__c," +
+            "Site_Survey_Date_A_End__c,Site_Survey_Time_A_End__c,Installation_Time_A_End__c," +
+            "End_to_End_Test_Date__c,In_Service_Date__c," +
+            "End_to_End_Test_Date_A_End__c, End_to_End_Test_Time_A_End__c," +
+            "Desk_Top_Survey_Completed__c, Desk_Top_Survey_Date__c," +
+            "Installation_Time__c,End_to_End_Test_Time__c, Virtual1_Engineer_Install_Rqd__c," +
+            "Qube_Install_Date__c,Qube_Install_Slot__c," +
+            "Analogue_Order_Accepted_Date__c,Analogue_Committed_Date__c,Analogue_Installation_Date__c,Analogue_Installation_Time__c,Carrier_Provider__c," +
+            "Estimated_Completion_Date__c, MinimumGuaranteedSpeed__c," +
+            "Next_Update_Due__c,Carrier_Appointment_Date__c,Carrier_Appointment_Reference__c,Carrier_Appointment_Timeslot__c,Project_Number1__c, " +
             relation("Asset_ID_A_End__r", ASSET_FIELDS) + ", " +
             relation("Asset_ID_B_End__r", ASSET_FIELDS) + ", " +
             relation("Access_ID__r", ACCESS_FIELDS);
@@ -242,7 +245,7 @@ class QueryTemplates {
     /**
      * http://www.salesforce.com/us/developer/docs/api/Content/sforce_api_calls_soql_select_quotedstringescapes.htm
      */
-    static String escapeSOQL(String searchQuery) {
+    public static String escapeSOQL(String searchQuery) {
         String result = searchQuery;
         String[] reservedChars = {"\\", "'", "\""};
 

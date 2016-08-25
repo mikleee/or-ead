@@ -51,6 +51,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
 
+import static uk.co.virtual1.salesforce.QueryTemplates.escapeSOQL;
+
 
 class ConvertingSFObjects {
 
@@ -143,14 +145,14 @@ class ConvertingSFObjects {
         String sfContactId = contact.getId();
         String contactName = contact.getName();
         if (StringUtils.isNotBlank(sfContactId)) {
-            contactName = "";
+            contactName = StringUtils.EMPTY;
             sObject.setId(sfContactId);
         }
         sObject.setField("AccountId", contact.getAccountId());
 
-        sObject.setField("FirstName", QueryTemplates.escapeSOQL(contact.getFirstName()));
-        sObject.setField("LastName", QueryTemplates.escapeSOQL(contact.getLastName()));
-        sObject.setField("Email", QueryTemplates.escapeSOQL(contact.getEmail()));
+        sObject.setField("FirstName", escapeSOQL(contact.getFirstName()));
+        sObject.setField("LastName", escapeSOQL(contact.getLastName()));
+        sObject.setField("Email", escapeSOQL(contact.getEmail()));
         sObject.setField("Phone", contact.getTelephone());
         sObject.setField("Title", contact.getJobTitle());
         sObject.setField("Role__c", contact.getRoles());
@@ -253,6 +255,12 @@ class ConvertingSFObjects {
         if (isNotEmpty(siteAObj)) {
             Site site = convertSite(siteAObj);
             access.setSiteAEnd(site);
+        }
+
+        XmlObject exchangeObj = sObject.getChild("Serving_Exchange_Code__r");
+        if (isNotEmpty(exchangeObj)) {
+            Exchange exchange = convertExchange(exchangeObj);
+            access.setExchange(exchange);
         }
 
         access.setAccessType((String) sObject.getField("Access_Type__c"));
@@ -811,7 +819,7 @@ class ConvertingSFObjects {
         if (StringUtils.isNotBlank(sfcase.getPriority())) {
             caseObject.setField("Priority", sfcase.getPriority());
         } else {
-            throw new RuntimeException("case-priority-is-blank");
+            throw new SalesforceException("case-priority-is-blank");
         }
 
         for (Map.Entry<String, Object> entry : sfcase.getCustomFields().entrySet()) {
@@ -970,7 +978,7 @@ class ConvertingSFObjects {
         sfObject.setField("Carrier_Provider__c", access.getProviderId());
         sfObject.setField("Carrier_Service_ID__c", access.getServiceId());
         sfObject.setField("Carrier_Product_Name_new__c", access.getProviderProductName());
-        sfObject.setField("Serving_Exchange_Code__c", access.getServingExchangeCodeId());
+        sfObject.setField("Serving_Exchange_Code__c", access.getExchange().getId());
         sfObject.setField("Carrier_CIR__c", access.getCarrierCIR());
         sfObject.setField("Carrier_Contract_months__c", access.getCarrierContract());
         sfObject.setField("Carrier_Interface_B_End__c", access.getCarrierInterfaceBEnd());
@@ -1236,7 +1244,7 @@ class ConvertingSFObjects {
 
     SfAttachment convertAttachment(XmlObject xmlObject) {
         SfAttachment attachment = prepareObject(new SfAttachment(), xmlObject);
-        attachment.setBody(Base64.decode(((String) xmlObject.getField("Body")).getBytes()));
+        attachment.setBody(getBytes(xmlObject, "Body"));
         attachment.setParentId((String) xmlObject.getField("ParentId"));
         return attachment;
     }
@@ -1395,7 +1403,9 @@ class ConvertingSFObjects {
     }
 
     Exchange convertExchange(XmlObject sObject) {
-        return prepareObject(new Exchange(), sObject);
+        Exchange exchange = prepareObject(new Exchange(), sObject);
+        exchange.setExchangeName((String) sObject.getField("Exchange_Name__c"));
+        return exchange;
     }
 
     protected SObject convert(Exchange exchange) {
@@ -1464,16 +1474,6 @@ class ConvertingSFObjects {
         return nni;
     }
 
-    private Integer convertToInteger(Object source) {
-        if (source == null)
-            return null;
-
-        if (source instanceof Number)
-            return ((Number) source).intValue();
-
-        return (new BigDecimal(source.toString())).intValue();
-    }
-
     Case convertCase(XmlObject sObject) {
         Case sfCase = new Case();
 
@@ -1516,7 +1516,8 @@ class ConvertingSFObjects {
         sfCase.setOrderAccepted(getDate(sObject, "Order_Accepted__c"));
         sfCase.setOrderReceived(getDate(sObject, "Order_Received_Date__c"));
         sfCase.setDeliverySchedule((String) sObject.getField("Delivery_Schedule__c"));
-        sfCase.setSiteName((String) sObject.getField("Site_Name_B_End__c"));
+        sfCase.setSiteNameBEnd((String) sObject.getField("Site_Name_B_End__c"));
+        sfCase.setPhoneBEnd((String) sObject.getField("Phone_B_End__c"));
         sfCase.setPostCode((String) sObject.getField("Post_Code_B_End__c"));
         sfCase.setAddress((String) sObject.getField("Address_B_End__c"));
 
@@ -1732,6 +1733,11 @@ class ConvertingSFObjects {
         return Boolean.parseBoolean(str);
     }
 
+    private byte[] getBytes(XmlObject sObject, String fieldName) {
+        String str = (String) sObject.getField(fieldName);
+        return str != null ? Base64.decode(str.getBytes()) : null;
+    }
+
     private Calendar getCalendar(XmlObject sObject, String fieldName) {
         Date date = getDate(sObject, fieldName);
         if (date != null) {
@@ -1741,6 +1747,16 @@ class ConvertingSFObjects {
         } else {
             return null;
         }
+    }
+
+    private Integer convertToInteger(Object source) {
+        if (source == null)
+            return null;
+
+        if (source instanceof Number)
+            return ((Number) source).intValue();
+
+        return (new BigDecimal(source.toString())).intValue();
     }
 
     private <T extends BaseSalesforceObject> T prepareObject(T t, XmlObject sObject) {
