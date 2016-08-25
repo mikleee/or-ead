@@ -4,9 +4,7 @@ import org.apache.commons.lang.StringUtils;
 
 import java.util.regex.Pattern;
 
-import static uk.co.virtual1.service.EnviromentKeyPatterns.BOOLEAN;
-import static uk.co.virtual1.service.EnviromentKeyPatterns.NUMBER;
-import static uk.co.virtual1.service.EnviromentKeyPatterns.STRING;
+import static uk.co.virtual1.service.EnviromentKeyPatterns.*;
 
 /**
  * @author Mikhail Tkachenko created on 26.05.16 16:35

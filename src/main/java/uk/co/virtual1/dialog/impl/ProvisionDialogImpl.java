@@ -16,9 +16,8 @@ public class ProvisionDialogImpl implements ProvisionDialog {
     private EadProvisionMessageFactory eadProvisionMessageFactory;
 
     @Override
-    public void provisionFromCase(Case sfCase) throws ProvisioningException {
-        String xml = eadProvisionMessageFactory.createMessage(sfCase);
-        System.out.println(xml);
+    public String provisionFromCase(Case sfCase) throws ProvisioningException {
+        return eadProvisionMessageFactory.createMessage(sfCase);
     }
 
 }

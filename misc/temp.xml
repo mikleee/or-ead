@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ns3:PurchaseOrder xmlns:ns2="urn:x-commerceone:document:telcoapisox:ServiceRequestOrder.sox$1.0" xmlns:ns3="urn:x-commerceone:document:com:commerceone:CBL:CBL.sox$1.0" xmlns:ns4="urn:x-commerceone:document:btsox:ead.sox$1.0">
     <OrderHeader>
-        <POIssuedDate>2016-08-25T10:56:01.714+03:00</POIssuedDate>
-        <RequestedDeliveryDate>2016-08-29T00:00:00.000+03:00</RequestedDeliveryDate>
+        <POIssuedDate>2016-08-25T17:37:16.230+03:00</POIssuedDate>
+        <RequestedDeliveryDate>2016-08-30T00:00:00.000+03:00</RequestedDeliveryDate>
         <OrderReference>
             <AccountCode>
                 <Reference>
@@ -11,7 +11,7 @@
             </AccountCode>
             <BuyerRefNum>
                 <Reference>
-                    <RefNum>00455985-V1C21322</RefNum>
+                    <RefNum>00455988-V1C21323</RefNum>
                 </Reference>
             </BuyerRefNum>
         </OrderReference>
@@ -49,55 +49,90 @@
             <Quantity>
                 <Qty>1</Qty>
                 <UnitOfMeasure>
-                    <UOF>EA</UOF>
+                    <UOM>EA</UOM>
                 </UnitOfMeasure>
             </Quantity>
-            <ns2:Site End="B">
-                <ns2:CompanyName>Mikhail company</ns2:CompanyName>
+            <ns2:Site End="A">
+                <ns2:CompanyName>British Telcomns PLC</ns2:CompanyName>
                 <ns2:Address type="Full">
                     <ns2:BritishAddress>
-                        <ns2:PremisesName>Vista Building 26A</ns2:PremisesName>
-                        <ns2:ThoroughfareName>Bow Road</ns2:ThoroughfareName>
+                        <ns2:PremisesName>DORKING</ns2:PremisesName>
+                        <ns2:ThoroughfareNumber>11</ns2:ThoroughfareNumber>
+                        <ns2:ThoroughfareName>Nottingham Street</ns2:ThoroughfareName>
                         <ns2:PostTown>LONDON</ns2:PostTown>
-                        <ns2:PostCode>E3 4JW</ns2:PostCode>
+                        <ns2:PostCode>W1U 5EL</ns2:PostCode>
                     </ns2:BritishAddress>
                 </ns2:Address>
+                <ns2:OnSiteTelephone>03448840800</ns2:OnSiteTelephone>
                 <ns2:Location>
                     <ns2:Floor>1</ns2:Floor>
-                    <ns2:Room>todo</ns2:Room>
-                    <ns2:Position>todo</ns2:Position>
+                    <ns2:Room>15/16</ns2:Room>
+                    <ns2:Position>Floor=1/Room=134/Rack=303</ns2:Position>
                 </ns2:Location>
                 <ns2:DetailedContact>
-                    <ContactName>Mikhail company</ContactName>
-                    <Telephone>todo</Telephone>
-                    <Email>todo</Email>
-                    <ns2:Title>todo</ns2:Title>
-                    <ns2:FirstName>todo</ns2:FirstName>
+                    <ContactName>Provisioning Team</ContactName>
+                    <Telephone>03448840800</Telephone>
+                    <Email>provisioning@virtual1.com</Email>
+                    <ns2:Title>Mr</ns2:Title>
+                    <ns2:FirstName>Provisioning</ns2:FirstName>
                     <ns2:Initials></ns2:Initials>
                 </ns2:DetailedContact>
             </ns2:Site>
-            <ns2:LineItemReference xsi:type="eadFeatures">
+            <ns2:Site End="B">
+                <ns2:CompanyName>Mikhail Tkachenko Inc</ns2:CompanyName>
+                <ns2:Address type="Full">
+                    <ns2:BritishAddress>
+                        <ns2:PremisesName>Communications House</ns2:PremisesName>
+                        <ns2:ThoroughfareName>Curtis Road</ns2:ThoroughfareName>
+                        <ns2:PostTown>Dorking</ns2:PostTown>
+                        <ns2:PostCode>RH4 1EA</ns2:PostCode>
+                    </ns2:BritishAddress>
+                </ns2:Address>
+                <ns2:OnSiteTelephone>01234567890</ns2:OnSiteTelephone>
+                <ns2:Location>
+                    <ns2:Floor>1</ns2:Floor>
+                    <ns2:Room>1</ns2:Room>
+                    <ns2:Position>1</ns2:Position>
+                </ns2:Location>
+                <ns2:DetailedContact>
+                    <ContactName>Mikhail Tkachenko</ContactName>
+                    <Telephone>01234567890</Telephone>
+                    <Email>provisioning@virtual1.com</Email>
+                    <ns2:Title>Mr</ns2:Title>
+                    <ns2:FirstName>Provisioning</ns2:FirstName>
+                    <ns2:Initials></ns2:Initials>
+                </ns2:DetailedContact>
+            </ns2:Site>
+            <ns2:Features xsi:type="eadFeatures">
                 <ns4:Provision>
-                    <ns4:ProvisionAEnd A13AmpDbleScktWithin1Mtr="Y" Housing="CABINET" SiteType="BT" Telephone3m="N" ThirdPartyAccess="N" CctNoOfFibreService="todo" ExistingFibreServiceatSite="Y" FibreServiceSameLocation="Y" FloorLoc="1 todo" RackLoc="303 todo" RoomLoc="15/16 todo" SlotLoc="todo" SuiteLoc="todo" CommsRoomReady="Y" LandlordConsentGranted="Y" LandLordConsent="N" NTEChassisOptionReqdAEnd="4U 15 Slot Modular" PowerSupplyRequired="240 VOLTS"/>
-                    <ns4:ProvisionBEnd A13AmpDbleScktWithin1Mtr="Y" Housing="CABINET" SiteType="Non BT" Telephone3m="Y" ThirdPartyAccess="Obtained" CctNoOfFibreService="N" ExistingFibreServiceatSite="N" FibreServiceSameLocation="N" FloorLoc="1" RackLoc="1" RoomLoc="1" SlotLoc="" SuiteLoc="" CommsRoomReady="Y" LandlordConsentGranted="Y" LandLordConsent="N" NTEChassisOptionReqdAEnd="1u single port NTE" PowerSupplyRequired="240 VOLTS"/>
+                    <ns4:ProvisionAEnd A13AmpDbleScktWithin1Mtr="Y" Housing="CABINET" SiteType="BT" Telephone3m="N" ThirdPartyAccess="N" CctNoOfFibreService="" CircuitInterfaceType="100Base - T (RJ-45)" ExistingFibreServiceatSite="Y"
+                                       FibreServiceSameLocation="Y" FloorLoc="1" RackLoc="303" RoomLoc="15/16" SlotLoc="" SuiteLoc="" CommsRoomReady="Y" LandlordConsentGranted="Y" LandLordConsent="N" NTEChassisOptionReqdAEnd="4U 15 Slot Modular"
+                                       PowerSupplyRequired="240 VOLTS"/>
+                    <ns4:ProvisionBEnd A13AmpDbleScktWithin1Mtr="Y" Housing="CABINET" SiteType="Non BT" Telephone3m="Y" ThirdPartyAccess="Obtained" CctNoOfFibreService="N" CircuitInterfaceType="100Base - T (RJ-45)" ExistingFibreServiceatSite="N"
+                                       FibreServiceSameLocation="N" FloorLoc="1" RackLoc="1" RoomLoc="1" SlotLoc="" SuiteLoc="" CommsRoomReady="Y" LandlordConsentGranted="Y" LandLordConsent="N" NTEChassisOptionReqdAEnd="1u single port NTE"
+                                       PowerSupplyRequired="240 VOLTS"/>
                     <ns4:ProvisionGeneral/>
                 </ns4:Provision>
-            </ns2:LineItemReference>
+            </ns2:Features>
             <ns4:LineItemReference>
                 <ns4:BuyerLineReference>1</ns4:BuyerLineReference>
             </ns4:LineItemReference>
             <ns4:LineItemFlags FasttrackFlag="N" FasttrackReason="" CellbuildFlag=""/>
         </ns2:ServiceRequestOrder>
         <SpecialHandlingNote></SpecialHandlingNote>
-        <GeneralNote>**Project ref: QBR781 Virtual 1 Router install required.(Appendix A lists the various Juniper routers and EDD (Ethernet Demarcation Device types with diagrams for each)Type: Customer owned equipment at customer’s site. Connect patch cable ge-1/0/0 which will be labelled in the exchangeon LLUC90004048, 3rd Floor, Suite 381 / 382, Rack 432 IMPORTANT: When installing a new MUX please ensure that thefibre box is installed at the bottom of the rack U1 to U4. 16port MUXs should be installed starting at U5 and moving upthe rack Call into V1 Provisioning on 0344 844 0800 once install has been completed.Commercial contact: Order Validation Team and 0344 884 0800 option 3Emergency contact:Site contact &amp; number - Alison Saul 07789501603 (Site Contact only to be used in emergency.All communication needs to be managed via Virtual1)Primary Site Contact A/B End: Provisioning Team / 03448840800</GeneralNote>
-        <RequestedDeliveryDate>2016-08-29T00:00:00.000+03:00</RequestedDeliveryDate>
+        <GeneralNote>**Project ref: QBR781 Virtual 1 Router install required. (Appendix A lists the various Juniper routers and EDD (Ethernet Demarcation Device types with diagrams for each) Type: Customer owned equipment at customer?s site. Connect
+            patch cable ge-2/0/7 which will be labelled in the exchange on LLUC90004048, 3rd Floor, Suite 381 / 382, Rack 432. IMPORTANT: When installing a new MUX please ensure that the fibre box is installed at the bottom of the rack U1 to U4.
+            16port MUXs should be installed starting at U5 and moving up the rack Call into V1 Provisioning on 0344 844 0800 once install has been completed. Commercial contact: Order Validation Team and 0344 884 0800 option 3. Emergency contact:
+            Site contact &amp; number - Mikhail Tkachenko 01234567890 (Site Contact only to be used in emergency. All communication needs to be managed via Virtual1). Primary Site Contact A/B End: Provisioning Team / 03448840800.
+        </GeneralNote>
+        <RequestedDeliveryDate>2016-08-30T00:00:00.000+03:00</RequestedDeliveryDate>
         <BuyerExpectedUnitPrice>
             <Price>
-                <UnitPrice>405.00</UnitPrice>
+                <UnitPrice>510.00</UnitPrice>
             </Price>
         </BuyerExpectedUnitPrice>
     </ListOfOrderDetail>
     <OrderSummary>
-        <TotalAmount>405.00</TotalAmount>
+        <TotalAmount>510.00</TotalAmount>
     </OrderSummary>
 </ns3:PurchaseOrder>

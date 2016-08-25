@@ -52,7 +52,7 @@ public class MessageFactoryUtils {
         return calendar(gregorianCalendar);
     }
 
-    XMLGregorianCalendar requestedDeliverydate(Case sfCase) {
+    XMLGregorianCalendar requestedDeliveryDate(Case sfCase) {
         Integer days = environment.getInt(EnvironmentKey.VIRTUAL1_NUMBER_OF_WORKING_DAYS);
         return calendar(sfCase.getOrderReceived(), days);
     }
@@ -69,7 +69,7 @@ public class MessageFactoryUtils {
         return sfCase.getCaseNumber() + "-" + sfCase.getAccess().getName();
     }
 
-
+    // TODO: 25.08.16
     String circuitInterfaceType(Access access) {
         String interfaceType = access.getCarrierInterfaceBEnd();
         String bearerSpeed = access.getBearerSpeed();
@@ -81,7 +81,7 @@ public class MessageFactoryUtils {
         } else if ("LC Single mode".equals(interfaceType) && "1000mb".equals(bearerSpeed)) {
             return "1000Base-LX(SMF)";
         } else {
-            return null;
+            return "100Base - T (RJ-45)"; //todo value need to be clarified
         }
     }
 
@@ -108,14 +108,15 @@ public class MessageFactoryUtils {
     String generalNote(Case sfCase) {
         Map<String, Object> params = new HashMap<>();
 
-        for (VLAN vlan : sfCase.getAccess().getVlans()) {
-            if (StringUtils.isNotBlank(vlan.getRelatedLANPort())) {
-                params.put("port", vlan.getRelatedLANPort());
-                break;
-            }
-        }
+        params.put("popPort", "ge-2/0/7"); //todo value need to be clarified
+        params.put("exchange", "LLUC90004048"); //todo value need to be clarified
+        params.put("floor", "3rd Floor"); //todo value need to be clarified
+        params.put("room", "381 / 382"); //todo value need to be clarified
+        params.put("rack", "432"); //todo value need to be clarified
+        params.put("contactName", sfCase.getContact().getName());
+        params.put("contactPhone", sfCase.getContact().getTelephone());
 
-        return ftlTemplateService.process("general-note.ftl", params).replaceAll("\\r+\\n", "");
+        return ftlTemplateService.process("general-note.ftl", params).replaceAll("\\r+\\n", " ");
     }
 
 }

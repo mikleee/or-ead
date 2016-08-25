@@ -12,18 +12,18 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType
 public class Location {
     @XmlElement(name = "Floor", namespace = Constants.SERVICE_REQUEST_ORDER_NS)
-    private long floor;
+    private String floor;
     @XmlElement(name = "Room", namespace = Constants.SERVICE_REQUEST_ORDER_NS)
     private String room;
     @XmlElement(name = "Position", namespace = Constants.SERVICE_REQUEST_ORDER_NS)
     private String position;
 
 
-    public long getFloor() {
+    public String getFloor() {
         return floor;
     }
 
-    public void setFloor(long floor) {
+    public void setFloor(String floor) {
         this.floor = floor;
     }
 

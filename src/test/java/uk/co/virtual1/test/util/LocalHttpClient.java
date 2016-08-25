@@ -62,7 +62,6 @@ public final class LocalHttpClient {
                 result.append(inputLine);
             }
         }
-        LOGGER.trace(result);
         return result.toString();
     }
 

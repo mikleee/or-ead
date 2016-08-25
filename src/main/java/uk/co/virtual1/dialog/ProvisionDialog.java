@@ -8,6 +8,6 @@ import uk.co.virtual1.salesforce.object.Case;
  */
 public interface ProvisionDialog {
 
-    void provisionFromCase(Case sfCase) throws ProvisioningException;
+    String provisionFromCase(Case sfCase) throws ProvisioningException;
 
 }

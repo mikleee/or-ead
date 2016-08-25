@@ -17,6 +17,9 @@ import uk.co.virtual1.salesforce.object.Access;
 import uk.co.virtual1.salesforce.object.Case;
 import uk.co.virtual1.test.util.LocalHttpClient;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = {Starter.class, Beans.class})
 @ActiveProfiles({"test"})
@@ -43,6 +46,17 @@ public class Tests {
     }
 
     @Test
+    public void createProvisionFiles() {
+        String[] ids = {"50023000001GzSe", "50023000001GzYD", "50023000001GzYI"};
+        for (String id : ids) {
+            Case aCase = getCase(id);
+            JsonResponse<String> response = provision(aCase);
+            Assert.assertEquals(response.getStatus(), "ok");
+            write("order-" + id + ".xml", response.getBody());
+        }
+    }
+
+    @Test
     public void provisionWithOutPricingEntries() {
         Case aCase = getCase();
         aCase.getAccess().getPricingEntryList().clear();
@@ -55,8 +69,8 @@ public class Tests {
         return deserializer.use("body", String.class).deserialize(json, JsonResponse.class);
     }
 
-    private Case getCase() {
-        Case aCase = salesforceService.getCase("50023000001GxFW");
+    private Case getCase(String id) {
+        Case aCase = salesforceService.getCase(id);
         Assert.assertNotNull(aCase);
         Assert.assertNotNull(aCase.getAccess());
         Access access = salesforceService.getAccess(aCase.getAccess().getId());
@@ -64,6 +78,17 @@ public class Tests {
         Assert.assertNotEquals(access.getPricingEntryList().size(), 0);
         aCase.setAccess(access);
         return aCase;
+    }
+
+    private Case getCase() {
+        return getCase("50023000001GzSe");
+    }
+
+    private void write(String file, String content) {
+        try (FileWriter writer = new FileWriter("/home/misha/Work/Projects/or-ead/misc/" + file)) {
+            writer.write(content);
+        } catch (IOException ignore) {
+        }
     }
 
 }

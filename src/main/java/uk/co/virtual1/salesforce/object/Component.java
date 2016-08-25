@@ -13,68 +13,68 @@ public class Component extends BaseSalesforceObject {
     private Integer serviceTerms;
 
 
-	public String getSiteName() {
-		return siteName;
-	}
+    public String getSiteName() {
+        return siteName;
+    }
 
-	public void setSiteName(String siteName) {
-		this.siteName = siteName;
-	}
+    public void setSiteName(String siteName) {
+        this.siteName = siteName;
+    }
 
-	public String getCategory() {
-		return category;
-	}
+    public String getCategory() {
+        return category;
+    }
 
-	public void setCategory(String category) {
-		this.category = category;
-	}
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
-	public String getType() {
-		return type;
-	}
+    public String getType() {
+        return type;
+    }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    public void setType(String type) {
+        this.type = type;
+    }
 
-	public String getStatus() {
-		return status;
-	}
+    public String getStatus() {
+        return status;
+    }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-	public String getAssetName() {
-		return assetName;
-	}
+    public String getAssetName() {
+        return assetName;
+    }
 
-	public void setAssetName(String assetName) {
-		this.assetName = assetName;
-	}
+    public void setAssetName(String assetName) {
+        this.assetName = assetName;
+    }
 
-	public String getAssetId() {
-		return assetId;
-	}
+    public String getAssetId() {
+        return assetId;
+    }
 
-	public void setAssetId(String assetId) {
-		this.assetId = assetId;
-	}
+    public void setAssetId(String assetId) {
+        this.assetId = assetId;
+    }
 
-	public Integer getServiceTerms() {
-		return serviceTerms;
-	}
+    public Integer getServiceTerms() {
+        return serviceTerms;
+    }
 
-	public void setServiceTerms(Integer serviceTerms) {
-		this.serviceTerms = serviceTerms;
-	}
+    public void setServiceTerms(Integer serviceTerms) {
+        this.serviceTerms = serviceTerms;
+    }
 
-	public String getProjectId() {
-		return projectId;
-	}
+    public String getProjectId() {
+        return projectId;
+    }
 
-	public void setProjectId(String projectId) {
-		this.projectId = projectId;
-	}
+    public void setProjectId(String projectId) {
+        this.projectId = projectId;
+    }
 
 }

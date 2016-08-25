@@ -2,10 +2,19 @@ package uk.co.virtual1.factory;
 
 import org.springframework.stereotype.Service;
 import uk.co.virtual1.exception.ProvisioningException;
-import uk.co.virtual1.model.xml.out.*;
+import uk.co.virtual1.model.xml.out.BuyerParty;
+import uk.co.virtual1.model.xml.out.Constants;
+import uk.co.virtual1.model.xml.out.EADFeatures;
+import uk.co.virtual1.model.xml.out.EADProvision;
+import uk.co.virtual1.model.xml.out.EADProvisionServiceRequestOrder;
+import uk.co.virtual1.model.xml.out.OrderDetail;
+import uk.co.virtual1.model.xml.out.OrderHeader;
+import uk.co.virtual1.model.xml.out.OrderParty;
+import uk.co.virtual1.model.xml.out.OrderReference;
+import uk.co.virtual1.model.xml.out.PurchaseOrder;
+import uk.co.virtual1.model.xml.out.Site;
 import uk.co.virtual1.salesforce.object.Access;
 import uk.co.virtual1.salesforce.object.Case;
-import uk.co.virtual1.service.EnvironmentKey;
 
 import java.math.BigDecimal;
 
@@ -37,7 +46,7 @@ public class EadProvisionMessageFactory extends MessageFactory {
         OrderHeader orderHeader = new OrderHeader();
 
         orderHeader.setPoIssuedDate(factoryUtils.calendar());
-        orderHeader.setRequestedDeliveryDate(factoryUtils.requestedDeliverydate(sfCase));
+        orderHeader.setRequestedDeliveryDate(factoryUtils.requestedDeliveryDate(sfCase));
 
         // orderReference
         OrderReference orderReference = orderHeader.getOrderReference();
@@ -50,7 +59,7 @@ public class EadProvisionMessageFactory extends MessageFactory {
 
         BuyerParty buyerParty = orderParty.getBuyerParty();
         buyerParty.getParty().setPartyID(environment.get(VIRTUAL1_BUYER_PARTY_ID));
-        buyerParty.getParty().getOrderContact().setDetailedContact(virtual1DetailedContact());
+        buyerParty.getParty().getOrderContact().setDetailedContact(virtual1DetailedContact);
 
         return orderHeader;
     }
@@ -67,16 +76,12 @@ public class EadProvisionMessageFactory extends MessageFactory {
 
         requestOrder.getSupplierPartNum().getPartNum().setPartID(Constants.ETHERNET_ACCESS_DIRECT_OR);
 
-        if (access.getSiteAEnd() != null) {
-            Site site = createSite(access.getSiteAEnd());
-            site.setDetailedContact(virtual1DetailedContact());
-            requestOrder.setSiteA(site);
-        }
-        if (access.getSiteBEnd() != null) {
-            Site site = createSite(access.getSiteBEnd());
-            site.setDetailedContact(createDetailedContact(access.getSiteBEnd()));
-            requestOrder.setSiteB(site);
-        }
+
+        Site siteAEnd = createSiteAEnd(sfCase);
+        requestOrder.setSiteA(siteAEnd);
+
+        Site siteBEnd = createSiteBEnd(sfCase);
+        requestOrder.setSiteB(siteBEnd);
 
         requestOrder.getLineItemReference().setBuyerLineReference("1");
 
@@ -85,7 +90,7 @@ public class EadProvisionMessageFactory extends MessageFactory {
 
         orderDetail.setSpecialHandlingNote(Constants.BLANK);
         orderDetail.setGeneralNote(factoryUtils.generalNote(sfCase)); // TODO: 24.08.2016  
-        orderDetail.setRequestedDeliveryDate(factoryUtils.requestedDeliverydate(sfCase));
+        orderDetail.setRequestedDeliveryDate(factoryUtils.requestedDeliveryDate(sfCase));
         orderDetail.getBuyerExpectedUnitPrice().getPrice().setUnitPrice(factoryUtils.unitPrice(access));
 
         return orderDetail;
@@ -110,15 +115,15 @@ public class EadProvisionMessageFactory extends MessageFactory {
         provisionAEnd.setSiteType(Constants.SITE_TYPE_BT);
         provisionAEnd.setTelephone3m(Constants.N);
         provisionAEnd.setThirdPartyAccess(Constants.N);
-        provisionAEnd.setCctNoOfFibreService("todo");
+        provisionAEnd.setCctNoOfFibreService(Constants.BLANK);
         provisionAEnd.setCircuitInterfaceType(factoryUtils.circuitInterfaceType(access));
         provisionAEnd.setExistingFibreServiceatSite(Constants.Y);
         provisionAEnd.setFibreServiceSameLocation(Constants.Y);
-        provisionAEnd.setFloorLoc("1 todo");
-        provisionAEnd.setRackLoc("303 todo");
-        provisionAEnd.setRoomLoc("15/16 todo");
-        provisionAEnd.setSlotLoc("todo");
-        provisionAEnd.setSuiteLoc("todo");
+        provisionAEnd.setFloorLoc("1"); //todo value need to be clarified
+        provisionAEnd.setRackLoc("303"); //todo value need to be clarified
+        provisionAEnd.setRoomLoc("15/16"); //todo value need to be clarified
+        provisionAEnd.setSlotLoc(Constants.BLANK); //todo value need to be clarified
+        provisionAEnd.setSuiteLoc(Constants.BLANK); //todo value need to be clarified
         provisionAEnd.setCommsRoomReady(Constants.Y);
         provisionAEnd.setLandlordConsentGranted(Constants.Y);
         provisionAEnd.setLandLordConsent(Constants.N);

@@ -27,8 +27,8 @@ public class RestController extends BaseController {
 
     @RequestMapping("/provision")
     public String ping(@RequestBody Case aCase) throws Exception {
-        provisionDialog.provisionFromCase(aCase);
-        return JsonResponse.ok();
+        String xml = provisionDialog.provisionFromCase(aCase);
+        return JsonResponse.ok(xml);
     }
 
     @ExceptionHandler({Exception.class})
