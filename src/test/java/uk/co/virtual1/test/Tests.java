@@ -17,8 +17,14 @@ import uk.co.virtual1.salesforce.object.Access;
 import uk.co.virtual1.salesforce.object.Case;
 import uk.co.virtual1.test.util.LocalHttpClient;
 
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = {Starter.class, Beans.class})

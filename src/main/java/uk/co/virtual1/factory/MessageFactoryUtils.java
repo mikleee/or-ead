@@ -1,6 +1,5 @@
 package uk.co.virtual1.factory;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.co.virtual1.exception.ProvisioningException;
@@ -9,7 +8,6 @@ import uk.co.virtual1.salesforce.SalesforceConstants;
 import uk.co.virtual1.salesforce.object.Access;
 import uk.co.virtual1.salesforce.object.Case;
 import uk.co.virtual1.salesforce.object.PricingEntry;
-import uk.co.virtual1.salesforce.object.VLAN;
 import uk.co.virtual1.service.ApplicationEnvironment;
 import uk.co.virtual1.service.EnvironmentKey;
 import uk.co.virtual1.service.FtlTemplateService;
@@ -41,19 +39,24 @@ public class MessageFactoryUtils {
         return calendar(gregorianCalendar);
     }
 
-    XMLGregorianCalendar calendar(Date date) {
-        return calendar(date, 0);
-    }
-
-    XMLGregorianCalendar calendar(Date date, int days) {
+    /**
+     * adds working days to date
+     */
+    XMLGregorianCalendar calendar(Date date, int workingDays) {
         GregorianCalendar gregorianCalendar = new GregorianCalendar();
         gregorianCalendar.setTime(date);
-        gregorianCalendar.add(Calendar.DATE, days);
+        while (workingDays > 0) {
+            gregorianCalendar.add(Calendar.DATE, 1);
+            int weekDay = gregorianCalendar.get(Calendar.DAY_OF_WEEK);
+            if (weekDay != Calendar.SUNDAY && weekDay != Calendar.SATURDAY) {
+                workingDays--;
+            }
+        }
         return calendar(gregorianCalendar);
     }
 
     XMLGregorianCalendar requestedDeliveryDate(Case sfCase) {
-        Integer days = environment.getInt(EnvironmentKey.VIRTUAL1_NUMBER_OF_WORKING_DAYS);
+        Integer days = environment.getInt(EnvironmentKey.VIRTUAL1_NUMBER_OF_WORKING_DAYS); // TODO: 26.08.16  
         return calendar(sfCase.getOrderReceived(), days);
     }
 
