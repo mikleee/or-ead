@@ -8,8 +8,8 @@ import uk.co.virtual1.model.xml.out.BritishAddress;
 import uk.co.virtual1.model.xml.out.Constants;
 import uk.co.virtual1.model.xml.out.DetailedContact;
 import uk.co.virtual1.model.xml.out.Site;
-import uk.co.virtual1.salesforce.object.Access;
-import uk.co.virtual1.salesforce.object.Case;
+import uk.co.virtual1.salesforcebox.object.Access;
+import uk.co.virtual1.salesforcebox.object.Case;
 import uk.co.virtual1.service.ApplicationEnvironment;
 import uk.co.virtual1.service.SoapSerializer;
 
@@ -79,7 +79,7 @@ abstract class MessageFactory implements InitializingBean {
 
     Site createSiteBEnd(Case sfCase) {
         Access access = sfCase.getAccess();
-        uk.co.virtual1.salesforce.object.Site site = access.getSiteBEnd();
+        uk.co.virtual1.salesforcebox.object.Site site = access.getSiteBEnd();
         Site result = new Site();
         result.setEnd(Constants.END_B);
 

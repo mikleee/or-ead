@@ -13,13 +13,12 @@ import uk.co.virtual1.model.xml.out.OrderParty;
 import uk.co.virtual1.model.xml.out.OrderReference;
 import uk.co.virtual1.model.xml.out.PurchaseOrder;
 import uk.co.virtual1.model.xml.out.Site;
-import uk.co.virtual1.salesforce.object.Access;
-import uk.co.virtual1.salesforce.object.Case;
+import uk.co.virtual1.salesforcebox.object.Access;
+import uk.co.virtual1.salesforcebox.object.Case;
 
 import java.math.BigDecimal;
 
-import static uk.co.virtual1.service.EnvironmentKey.VIRTUAL1_ACCOUNT_REF_NUM;
-import static uk.co.virtual1.service.EnvironmentKey.VIRTUAL1_BUYER_PARTY_ID;
+import static uk.co.virtual1.service.EnvironmentKey.*;
 
 /**
  * @author Mikhail Tkachenko created on 23.08.16 14:04

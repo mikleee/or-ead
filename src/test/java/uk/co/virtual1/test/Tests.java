@@ -12,19 +12,15 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import uk.co.virtual1.Starter;
 import uk.co.virtual1.config.Beans;
 import uk.co.virtual1.model.json.JsonResponse;
-import uk.co.virtual1.salesforce.SalesforceService;
-import uk.co.virtual1.salesforce.object.Access;
-import uk.co.virtual1.salesforce.object.Case;
+import uk.co.virtual1.salesforcebox.SalesforceService;
+import uk.co.virtual1.salesforcebox.object.Access;
+import uk.co.virtual1.salesforcebox.object.Case;
 import uk.co.virtual1.test.util.LocalHttpClient;
 
-import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeFactory;
-import javax.xml.datatype.XMLGregorianCalendar;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+
+import static uk.co.virtual1.salesforcebox.object.SalesforceObjectType.Access;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = {Starter.class, Beans.class})
@@ -49,6 +45,7 @@ public class Tests {
         Case aCase = getCase();
         JsonResponse<String> response = provision(aCase);
         Assert.assertEquals(response.getStatus(), "ok");
+         write("temp-case-" + aCase.getId() + ".xml", response.getBody());
     }
 
     @Test

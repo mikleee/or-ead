@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import uk.co.virtual1.dialog.ProvisionDialog;
 import uk.co.virtual1.model.json.JsonResponse;
-import uk.co.virtual1.salesforce.object.Case;
+import uk.co.virtual1.salesforcebox.object.Case;
 
 import java.io.IOException;
 

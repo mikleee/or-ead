@@ -2,11 +2,15 @@ package uk.co.virtual1.config;
 
 import flexjson.JSONDeserializer;
 import flexjson.JSONSerializer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
+import uk.co.virtual1.salesforcebox.SalesforceService;
+import uk.co.virtual1.service.ApplicationEnvironment;
+import uk.co.virtual1.service.EnvironmentKey;
 
 
 /**
@@ -14,6 +18,8 @@ import org.springframework.security.crypto.password.StandardPasswordEncoder;
  */
 @Configurable
 public class Beans {
+    @Autowired
+    private ApplicationEnvironment environment;
 
     @Bean
     public JSONSerializer jsonSerializer() {
@@ -29,5 +35,16 @@ public class Beans {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new StandardPasswordEncoder();
+    }
+
+    @Bean
+    public SalesforceService salesforceService() {
+        return new SalesforceService(
+                environment.get(EnvironmentKey.SF_USER_NAME),
+                environment.get(EnvironmentKey.SF_PASSWORD),
+                environment.get(EnvironmentKey.SF_TOKEN),
+                environment.getBoolean(EnvironmentKey.SF_SANDBOX),
+                environment.get(EnvironmentKey.SF_CLIENT_IDENTIFIER)
+        );
     }
 }

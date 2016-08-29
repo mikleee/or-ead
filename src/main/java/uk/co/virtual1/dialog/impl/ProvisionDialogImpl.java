@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import uk.co.virtual1.dialog.ProvisionDialog;
 import uk.co.virtual1.exception.ProvisioningException;
 import uk.co.virtual1.factory.EadProvisionMessageFactory;
-import uk.co.virtual1.salesforce.object.Case;
+import uk.co.virtual1.salesforcebox.object.Case;
 
 /**
  * @author Mikhail Tkachenko created on 17.05.2016

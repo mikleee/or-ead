@@ -16,6 +16,7 @@ public enum EnvironmentKey {
     SF_USER_NAME("sf.userName", STRING),
     SF_PASSWORD("sf.password", STRING),
     SF_TOKEN("sf.token"),
+    SF_CLIENT_IDENTIFIER("sf.clientIdentifier"),
     SF_SANDBOX("sf.sandbox", BOOLEAN),
 
     VIRTUAL1_ACCOUNT_REF_NUM("virtual1.accountRefNum", STRING),
@@ -24,6 +25,9 @@ public enum EnvironmentKey {
     VIRTUAL1_CONTACT_EMAIL("virtual1.contactEmail", STRING),
     VIRTUAL1_CONTACT_TITLE("virtual1.contactTitle", STRING),
     VIRTUAL1_CONTACT_FIRST_NAME("virtual1.contactFirstName", STRING),
+//    VIRTUAL1_SITE_FLOOR("virtual1.siteFloor", STRING),
+//    VIRTUAL1_SITE_ROOM("virtual1.siteRoom", STRING),
+//    VIRTUAL1_SITE_POSITION("virtual1.sitePosition", STRING),
     VIRTUAL1_NUMBER_OF_WORKING_DAYS("virtual1.numberOfWorkingDays", NUMBER),
     VIRTUAL1_BUYER_PARTY_ID("virtual1.buyerPartyId", STRING);
 

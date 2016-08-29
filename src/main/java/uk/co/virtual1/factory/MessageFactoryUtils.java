@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.co.virtual1.exception.ProvisioningException;
 import uk.co.virtual1.model.xml.out.OrderDetail;
-import uk.co.virtual1.salesforce.SalesforceConstants;
-import uk.co.virtual1.salesforce.object.Access;
-import uk.co.virtual1.salesforce.object.Case;
-import uk.co.virtual1.salesforce.object.PricingEntry;
+import uk.co.virtual1.salesforcebox.SalesforceConstants;
+import uk.co.virtual1.salesforcebox.object.Access;
+import uk.co.virtual1.salesforcebox.object.Case;
+import uk.co.virtual1.salesforcebox.object.PricingEntry;
 import uk.co.virtual1.service.ApplicationEnvironment;
 import uk.co.virtual1.service.EnvironmentKey;
 import uk.co.virtual1.service.FtlTemplateService;
@@ -111,6 +111,8 @@ public class MessageFactoryUtils {
     String generalNote(Case sfCase) {
         Map<String, Object> params = new HashMap<>();
 
+        params.put("virtual1ContactName", environment.get(EnvironmentKey.VIRTUAL1_CONTACT_NAME));
+        params.put("virtual1ContactPhone", environment.get(EnvironmentKey.VIRTUAL1_CONTACT_PHONE));
         params.put("popPort", "ge-2/0/7"); //todo value need to be clarified
         params.put("exchange", "LLUC90004048"); //todo value need to be clarified
         params.put("floor", "3rd Floor"); //todo value need to be clarified
