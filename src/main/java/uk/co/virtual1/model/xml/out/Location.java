@@ -11,11 +11,11 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType
 public class Location {
-    @XmlElement(name = "Floor", namespace = Constants.SERVICE_REQUEST_ORDER_NS)
+    @XmlElement(name = "Floor", namespace = Ns.SERVICE_REQUEST_ORDER_NS)
     private String floor;
-    @XmlElement(name = "Room", namespace = Constants.SERVICE_REQUEST_ORDER_NS)
+    @XmlElement(name = "Room", namespace = Ns.SERVICE_REQUEST_ORDER_NS)
     private String room;
-    @XmlElement(name = "Position", namespace = Constants.SERVICE_REQUEST_ORDER_NS)
+    @XmlElement(name = "Position", namespace = Ns.SERVICE_REQUEST_ORDER_NS)
     private String position;
 
 

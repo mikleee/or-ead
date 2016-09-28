@@ -10,21 +10,21 @@ import javax.xml.bind.annotation.XmlType;
  * @author Mikhail Tkachenko created on 22.08.16 13:34
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(namespace = Constants.SERVICE_REQUEST_ORDER_NS)
+@XmlType(namespace = Ns.SERVICE_REQUEST_ORDER_NS)
 public class Site {
     @XmlAttribute(name = "End")
     private String end;
-    @XmlElement(name = "CompanyName", namespace = Constants.SERVICE_REQUEST_ORDER_NS)
+    @XmlElement(name = "CompanyName", namespace = Ns.SERVICE_REQUEST_ORDER_NS)
     private String companyName;
-    @XmlElement(name = "Address", namespace = Constants.SERVICE_REQUEST_ORDER_NS)
+    @XmlElement(name = "Address", namespace = Ns.SERVICE_REQUEST_ORDER_NS)
     private Address address = new Address();
-    @XmlElement(name = "Coordinates", namespace = Constants.SERVICE_REQUEST_ORDER_NS)
+    @XmlElement(name = "Coordinates", namespace = Ns.SERVICE_REQUEST_ORDER_NS)
     private Coordinates coordinates;
-    @XmlElement(name = "OnSiteTelephone", namespace = Constants.SERVICE_REQUEST_ORDER_NS)
+    @XmlElement(name = "OnSiteTelephone", namespace = Ns.SERVICE_REQUEST_ORDER_NS)
     private String onSiteTelephone;
-    @XmlElement(name = "Location", namespace = Constants.SERVICE_REQUEST_ORDER_NS)
+    @XmlElement(name = "Location", namespace = Ns.SERVICE_REQUEST_ORDER_NS)
     private Location location = new Location();
-    @XmlElement(name = "DetailedContact", namespace = Constants.SERVICE_REQUEST_ORDER_NS)
+    @XmlElement(name = "DetailedContact", namespace = Ns.SERVICE_REQUEST_ORDER_NS)
     private DetailedContact detailedContact = new DetailedContact();
 
 

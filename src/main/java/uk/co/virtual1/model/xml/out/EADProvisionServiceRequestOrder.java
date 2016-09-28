@@ -11,9 +11,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType
 public class EADProvisionServiceRequestOrder extends ProvisionServiceRequestOrder {
-    @XmlElement(name = "LineItemReference", namespace = Constants.EAD_PRODUCT_NS)
+    @XmlElement(name = "LineItemReference", namespace = Ns.EAD_PRODUCT_NS)
     private EADLineItemReference lineItemReference = new EADLineItemReference();
-    @XmlElement(name = "LineItemFlags", namespace = Constants.EAD_PRODUCT_NS)
+    @XmlElement(name = "LineItemFlags", namespace = Ns.EAD_PRODUCT_NS)
     private LineItemFlags lineItemFlags = new LineItemFlags();
 
     public EADProvisionServiceRequestOrder() {

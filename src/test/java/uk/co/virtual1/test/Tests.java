@@ -20,8 +20,6 @@ import uk.co.virtual1.test.util.LocalHttpClient;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import static uk.co.virtual1.salesforcebox.object.SalesforceObjectType.Access;
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = {Starter.class, Beans.class})
 @ActiveProfiles({"test"})
@@ -50,7 +48,7 @@ public class Tests {
 
     @Test
     public void createProvisionFiles() {
-        String[] ids = {"50023000001GzSe", "50023000001GzYD", "50023000001GzYI"};
+        String[] ids = {"500S00000080YAD"};
         for (String id : ids) {
             Case aCase = getCase(id);
             JsonResponse<String> response = provision(aCase);

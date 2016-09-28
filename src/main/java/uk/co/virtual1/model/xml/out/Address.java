@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlType;
 public class Address {
     @XmlAttribute(name = "type")
     private String type = Constants.ADDRESS_TYPE_FULL;
-    @XmlElement(name = "BritishAddress", namespace = Constants.SERVICE_REQUEST_ORDER_NS)
+    @XmlElement(name = "BritishAddress", namespace = Ns.SERVICE_REQUEST_ORDER_NS)
     private BritishAddress britishAddress = new BritishAddress();
 
     public String getType() {

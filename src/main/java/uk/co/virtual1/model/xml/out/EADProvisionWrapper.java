@@ -11,11 +11,11 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType
 public class EADProvisionWrapper extends ProvisionWrapper {
-    @XmlElement(name = "ProvisionAEnd", namespace = Constants.EAD_PRODUCT_NS)
+    @XmlElement(name = "ProvisionAEnd", namespace = Ns.EAD_PRODUCT_NS)
     private EADProvision provisionAEnd = new EADProvision();
-    @XmlElement(name = "ProvisionBEnd", namespace = Constants.EAD_PRODUCT_NS)
+    @XmlElement(name = "ProvisionBEnd", namespace = Ns.EAD_PRODUCT_NS)
     private EADProvision provisionBEnd = new EADProvision();
-    @XmlElement(name = "ProvisionGeneral", namespace = Constants.EAD_PRODUCT_NS)
+    @XmlElement(name = "ProvisionGeneral", namespace = Ns.EAD_PRODUCT_NS)
     private EADProvisionGeneral provisionGeneral = new EADProvisionGeneral();
 
     public EADProvision getProvisionAEnd() {

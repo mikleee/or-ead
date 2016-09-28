@@ -3,6 +3,18 @@
            targetNamespace="http://virtual1.co.uk/model/xml"
            elementFormDefault="qualified">
 
+
+
+
+
+
+
+
+
+
+
+
+
     <xs:complexType name="baseRequest" abstract="true">
         <xs:sequence>
             <xs:element name="apiKey" type="xs:string"/>

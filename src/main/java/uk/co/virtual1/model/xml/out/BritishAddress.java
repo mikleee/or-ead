@@ -11,15 +11,15 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType
 public class BritishAddress {
-    @XmlElement(name = "PremisesName", namespace = Constants.SERVICE_REQUEST_ORDER_NS)
+    @XmlElement(name = "PremisesName", namespace = Ns.SERVICE_REQUEST_ORDER_NS)
     private String premisesName;
-    @XmlElement(name = "ThoroughfareNumber", namespace = Constants.SERVICE_REQUEST_ORDER_NS)
+    @XmlElement(name = "ThoroughfareNumber", namespace = Ns.SERVICE_REQUEST_ORDER_NS)
     private String thoroughfareNumber;
-    @XmlElement(name = "ThoroughfareName", namespace = Constants.SERVICE_REQUEST_ORDER_NS)
+    @XmlElement(name = "ThoroughfareName", namespace = Ns.SERVICE_REQUEST_ORDER_NS)
     private String thoroughfareName;
-    @XmlElement(name = "PostTown", namespace = Constants.SERVICE_REQUEST_ORDER_NS)
+    @XmlElement(name = "PostTown", namespace = Ns.SERVICE_REQUEST_ORDER_NS)
     private String postTown;
-    @XmlElement(name = "PostCode", namespace = Constants.SERVICE_REQUEST_ORDER_NS)
+    @XmlElement(name = "PostCode", namespace = Ns.SERVICE_REQUEST_ORDER_NS)
     private String postCode;
 
     public String getPostCode() {

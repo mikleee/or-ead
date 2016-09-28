@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType
 public class EADFeatures extends Features<EADProvisionWrapper> {
-    @XmlElement(name = "Provision", namespace = Constants.EAD_PRODUCT_NS)
+    @XmlElement(name = "Provision", namespace = Ns.EAD_PRODUCT_NS)
     private EADProvisionWrapper provision = new EADProvisionWrapper();
 
     public EADProvisionWrapper getProvision() {

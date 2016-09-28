@@ -19,11 +19,11 @@ public abstract class ProvisionServiceRequestOrder extends ServiceRequestOrder {
     private SupplierPartNum supplierPartNum = new SupplierPartNum();
     @XmlElement(name = "Quantity")
     private Quantity quantity = new Quantity();
-    @XmlElement(name = "Site", namespace = Constants.SERVICE_REQUEST_ORDER_NS)
+    @XmlElement(name = "Site", namespace = Ns.SERVICE_REQUEST_ORDER_NS)
     private Site siteA;
-    @XmlElement(name = "Site", namespace = Constants.SERVICE_REQUEST_ORDER_NS)
+    @XmlElement(name = "Site", namespace = Ns.SERVICE_REQUEST_ORDER_NS)
     private Site siteB;
-    @XmlElement(name = "Features", namespace = Constants.SERVICE_REQUEST_ORDER_NS)
+    @XmlElement(name = "Features", namespace = Ns.SERVICE_REQUEST_ORDER_NS)
     private Features features;
 
     public ProvisionServiceRequestOrder() {

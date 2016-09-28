@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType
 public class OrderContact {
-    @XmlElement(name = "DetailedContact", namespace = Constants.SERVICE_REQUEST_ORDER_NS)
+    @XmlElement(name = "DetailedContact", namespace = Ns.SERVICE_REQUEST_ORDER_NS)
     private DetailedContact detailedContact = new DetailedContact();
 
     public DetailedContact getDetailedContact() {

@@ -13,7 +13,7 @@ import java.util.List;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType
-@XmlRootElement(name = "PurchaseOrder", namespace = Constants.GLOBAL_NS)
+@XmlRootElement(name = "PurchaseOrder", namespace = Ns.GLOBAL_NS)
 public class PurchaseOrder {
     @XmlElement(name = "OrderHeader")
     private OrderHeader orderHeader = new OrderHeader();

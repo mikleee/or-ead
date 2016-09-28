@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType
 public class EADLineItemReference {
-    @XmlElement(name = "BuyerLineReference", namespace = Constants.EAD_PRODUCT_NS)
+    @XmlElement(name = "BuyerLineReference", namespace = Ns.EAD_PRODUCT_NS)
     private String buyerLineReference;
 
     public String getBuyerLineReference() {

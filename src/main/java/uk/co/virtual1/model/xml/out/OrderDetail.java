@@ -12,7 +12,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType
 public class OrderDetail {
-    @XmlElement(name = "ServiceRequestOrder", namespace = Constants.SERVICE_REQUEST_ORDER_NS)
+    @XmlElement(name = "ServiceRequestOrder", namespace = Ns.SERVICE_REQUEST_ORDER_NS)
     private ServiceRequestOrder serviceRequestOrder;
     @XmlElement(name = "SpecialHandlingNote")
     private String specialHandlingNote;

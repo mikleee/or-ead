@@ -17,11 +17,11 @@ public class DetailedContact {
     private String telephone;
     @XmlElement(name = "Email")
     private String email;
-    @XmlElement(name = "Title", namespace = Constants.SERVICE_REQUEST_ORDER_NS)
+    @XmlElement(name = "Title", namespace = Ns.SERVICE_REQUEST_ORDER_NS)
     private String title;
-    @XmlElement(name = "FirstName", namespace = Constants.SERVICE_REQUEST_ORDER_NS)
+    @XmlElement(name = "FirstName", namespace = Ns.SERVICE_REQUEST_ORDER_NS)
     private String firstName;
-    @XmlElement(name = "Initials", namespace = Constants.SERVICE_REQUEST_ORDER_NS)
+    @XmlElement(name = "Initials", namespace = Ns.SERVICE_REQUEST_ORDER_NS)
     private String initials;
 
 

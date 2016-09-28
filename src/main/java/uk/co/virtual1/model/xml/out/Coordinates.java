@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlType;
  * @author Mikhail Tkachenko created on 22.08.16 13:34
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(namespace = Constants.SERVICE_REQUEST_ORDER_NS)
+@XmlType(namespace = Ns.SERVICE_REQUEST_ORDER_NS)
 public class Coordinates {
     @XmlElement(name = "Coordinate")
     private Coordinate coordinate = new Coordinate();
